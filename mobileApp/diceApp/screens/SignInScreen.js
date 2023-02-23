@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Button, Image, Pressable, ImageBackground, CheckBox } from 'react-native'
+import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Button, Image, Pressable, ImageBackground } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function LoginScreen({navigation}){
+export default function SignInScreen({navigation}){
   return (
     <ImageBackground source={require('./img/dicesplash0322.jpg')} resizeMode="cover" style={styles.imageBk}>
       <LinearGradient
@@ -15,21 +15,26 @@ export default function LoginScreen({navigation}){
       <Image source={require('./img/LOGO_Black.png')} style={styles.image}/>
       <View style={styles.login}>
         <View style={styles.buttons}>
-          <Pressable style={styles.button1}><Text style={styles.textButton1}>Login</Text></Pressable>
-          <Pressable onPress={() => navigation.navigate('SignIn')} style={styles.button2}><Text>Sing in</Text></Pressable>
+          <Pressable onPress={() => navigation.navigate('Login')} style={styles.button1}><Text>Login</Text></Pressable>
+          <Pressable style={styles.button2}><Text style={styles.textButton2} >Sign in</Text></Pressable>
         </View>
-        <Text style={styles.Title}>Login</Text>
+        <Text style={styles.Title}>Sign In</Text>
         <View style={styles.Icons}>
           <Ionicons name="logo-google" size={40} color="ghostwhite"/>
           <Ionicons name="logo-facebook" size={40} color="ghostwhite"/>
         </View>
         <View style={styles.inputs}>
-          <TextInput placeholder='Email' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+          <TextInput placeholder='Name' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+          <TextInput placeholder='Surname' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
         </View>
         <View style={styles.inputs}>
+          <TextInput placeholder='Email' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
           <TextInput placeholder='Password' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
         </View>
-        <Pressable onPress={() => navigation.navigate('Home')} style={styles.LoginButton}><Text>Login</Text></Pressable>
+        <View style={styles.inputs1}>
+          <TextInput placeholder='Birthday Date' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+        </View>
+        <Pressable onPress={() => navigation.navigate('Home')} style={styles.SignInButton}><Text>SignIn</Text></Pressable>
       </View>
       
     </View>
@@ -62,18 +67,18 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       width: 75,
       height: 50,
-      borderBottomWidth: 3,
-      borderColor: '#fcb900',
-    },
-    textButton1: {
-      color: 'ghostwhite',
+      backgroundColor: '#fcb900',
     },
     button2:  {
       alignItems: 'center',
       justifyContent: 'center',
       width: 75,
       height: 50,
-      backgroundColor: '#fcb900',
+      borderBottomWidth: 3,
+      borderColor: '#fcb900',
+    },
+    textButton2: {
+      color: 'ghostwhite',
     },
     Icons: {
       marginTop: 15,
@@ -86,7 +91,8 @@ const styles = StyleSheet.create({
       fontSize: 35,
       marginTop: 50,
     },
-    LoginButton: {
+    SignInButton: {
+      color: 'ghostwhite',
       borderRadius: 25,
       marginTop: 50,
       alignItems: 'center',
@@ -103,13 +109,20 @@ const styles = StyleSheet.create({
       borderColor: 'gray',
     },
     inputs: {
-      marginTop: 50,
+      marginTop: 35,
       width: 250,
+      justifyContent: 'space-between',
+      flexDirection: 'row',
+    },
+    inputs1: {
+      marginTop: 50,
+      width: 200,
       justifyContent: 'center',
       flexDirection: 'row',
     },
     imageBk: {
-      height: 1000,
+      height: '100%',
+      width: '100%',
     },
     background: {
       position: 'absolute',
