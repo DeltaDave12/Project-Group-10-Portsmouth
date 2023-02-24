@@ -15,7 +15,7 @@ export default function LoginScreen({navigation}){
         <Image source={require('./img/LOGO_Black.png')} style={styles.image}/>
         <View style={styles.login}>
           <View style={styles.buttons}>
-            <Pressable style={styles.button1} onPress={() => navigation.navigate('Home')}><Text style={styles.textButton1}>Login</Text></Pressable>
+            <Pressable style={styles.button1}><Text style={styles.textButton1}>Login</Text></Pressable>
             <Pressable onPress={() => navigation.navigate('SignIn')} style={styles.button2}><Text>Sign in</Text></Pressable>
           </View>
           <Text style={styles.Title}>Login</Text>
