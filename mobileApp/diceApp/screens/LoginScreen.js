@@ -6,32 +6,32 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 export default function LoginScreen({navigation}){
   return (
     <ImageBackground source={require('./img/dicesplash0322.jpg')} resizeMode="cover" style={styles.imageBk}>
-      <LinearGradient
-        // Background Linear Gradient
-        colors={['rgba(0,0,0,0.50)', 'transparent']}
-        style={styles.background}
-      />
-    <View style={styles.container}>
-      <Image source={require('./img/LOGO_Black.png')} style={styles.image}/>
-      <View style={styles.login}>
-        <View style={styles.buttons}>
-          <Pressable style={styles.button1} onPress={() => navigation.navigate('Home')}><Text style={styles.textButton1}>Login</Text></Pressable>
-          <Pressable onPress={() => navigation.navigate('SignIn')} style={styles.button2}><Text>Sign in</Text></Pressable>
+        <LinearGradient
+          // Background Linear Gradient
+          colors={['rgba(0,0,0,0.50)', 'transparent']}
+          style={styles.background}
+        />
+      <View style={styles.container}>
+        <Image source={require('./img/LOGO_Black.png')} style={styles.image}/>
+        <View style={styles.login}>
+          <View style={styles.buttons}>
+            <Pressable style={styles.button1} onPress={() => navigation.navigate('Home')}><Text style={styles.textButton1}>Login</Text></Pressable>
+            <Pressable onPress={() => navigation.navigate('SignIn')} style={styles.button2}><Text>Sign in</Text></Pressable>
+          </View>
+          <Text style={styles.Title}>Login</Text>
+          <View style={styles.Icons}>
+            <Ionicons name="logo-google" size={40} color="ghostwhite"/>
+            <Ionicons name="logo-facebook" size={40} color="ghostwhite"/>
+          </View>
+          <View style={styles.inputs}>
+            <TextInput placeholder='Email' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+          </View>
+          <View style={styles.inputs}>
+            <TextInput placeholder='Password' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+          </View>
+          <Pressable onPress={() => navigation.navigate('Home')} style={styles.LoginButton}><Text>Login</Text></Pressable>
         </View>
-        <Text style={styles.Title}>Login</Text>
-        <View style={styles.Icons}>
-          <Ionicons name="logo-google" size={40} color="ghostwhite"/>
-          <Ionicons name="logo-facebook" size={40} color="ghostwhite"/>
-        </View>
-        <View style={styles.inputs}>
-          <TextInput placeholder='Email' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
-        </View>
-        <View style={styles.inputs}>
-          <TextInput placeholder='Password' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
-        </View>
-        <Pressable onPress={() => navigation.navigate('Home')} style={styles.LoginButton}><Text>Login</Text></Pressable>
       </View>
-    </View>
     </ImageBackground>
   )
 }
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     container: {
       marginVertical: 50,
       marginLeft: 10,
+      marginBottom: 25,
       
     },
     login: {

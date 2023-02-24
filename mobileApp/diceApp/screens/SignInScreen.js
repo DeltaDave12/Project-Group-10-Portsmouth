@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     container: {
       marginVertical: 50,
       marginLeft: 10,
+      marginBottom: 25,
       
     },
     login: {
