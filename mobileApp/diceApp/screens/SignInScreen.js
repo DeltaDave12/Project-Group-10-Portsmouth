@@ -15,7 +15,7 @@ export default function SignInScreen({navigation}){
       <Image source={require('./img/LOGO_Black.png')} style={styles.image}/>
       <View style={styles.login}>
         <View style={styles.buttons}>
-          <Pressable onPress={() => navigation.navigate('Login')} style={styles.button1}><Text>Login</Text></Pressable>
+          <Pressable onPress={() => navigation.navigate('Login')} style={styles.button1}><Text style={styles.textButton1}>Login</Text></Pressable>
           <Pressable style={styles.button2}><Text style={styles.textButton2} >Sign in</Text></Pressable>
         </View>
         <Text style={styles.Title}>Sign In</Text>
@@ -24,15 +24,15 @@ export default function SignInScreen({navigation}){
           <Ionicons name="logo-facebook" size={40} color="ghostwhite"/>
         </View>
         <View style={styles.inputs}>
-          <TextInput placeholder='Name' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
-          <TextInput placeholder='Surname' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+          <TextInput placeholder='Name' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+          <TextInput placeholder='Surname' style={styles.input} placeholderTextColor="#512F07"></TextInput>
         </View>
         <View style={styles.inputs}>
-          <TextInput placeholder='Email' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
-          <TextInput placeholder='Password' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+          <TextInput placeholder='Email' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+          <TextInput placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
         </View>
         <View style={styles.inputs1}>
-          <TextInput placeholder='Birthday Date' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+          <TextInput placeholder='Birthday Date' style={styles.input} placeholderTextColor="#512F07"></TextInput>
         </View>
         <Pressable onPress={() => navigation.navigate('Home')} style={styles.SignInButton}><Text>SignIn</Text></Pressable>
       </View>
@@ -49,10 +49,8 @@ const styles = StyleSheet.create({
       height: 100,
     },
     container: {
-      marginVertical: 50,
-      marginLeft: 10,
-      marginBottom: 25,
-      
+      marginVertical: '10%',
+      marginLeft: '0%',
     },
     login: {
       alignItems: 'center',
@@ -79,7 +77,10 @@ const styles = StyleSheet.create({
       borderColor: '#fcb900',
     },
     textButton2: {
-      color: 'ghostwhite',
+      color: '#fcb900',
+    },
+    textButton1: {
+      color: 'white',
     },
     Icons: {
       marginTop: 15,
@@ -103,15 +104,18 @@ const styles = StyleSheet.create({
       backgroundColor: '#fcb900',
     },
     input: {
-      backgroundColor: 'rgba(6, 44, 73,0.3)',
-      height: 50,
-      width: 100,
-      borderBottomWidth: 3,
-      borderColor: 'gray',
+      backgroundColor: 'white',
+      paddingLeft: 15,
+      height: 35,
+      width: 135,
+      borderWidth: 0,
+      borderColor: 'lightgray',
+      borderRadius: 15,
+      fontSize: 12,
     },
     inputs: {
       marginTop: 35,
-      width: 250,
+      width: 325,
       justifyContent: 'space-between',
       flexDirection: 'row',
     },

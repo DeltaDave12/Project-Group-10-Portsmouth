@@ -16,7 +16,7 @@ export default function LoginScreen({navigation}){
         <View style={styles.login}>
           <View style={styles.buttons}>
             <Pressable style={styles.button1}><Text style={styles.textButton1}>Login</Text></Pressable>
-            <Pressable onPress={() => navigation.navigate('SignIn')} style={styles.button2}><Text>Sign in</Text></Pressable>
+            <Pressable onPress={() => navigation.navigate('SignIn')} style={styles.button2}><Text style={styles.button2Text}>Sign in</Text></Pressable>
           </View>
           <Text style={styles.Title}>Login</Text>
           <View style={styles.Icons}>
@@ -24,10 +24,10 @@ export default function LoginScreen({navigation}){
             <Ionicons name="logo-facebook" size={40} color="ghostwhite"/>
           </View>
           <View style={styles.inputs}>
-            <TextInput placeholder='Email' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+            <TextInput placeholder='Email' style={styles.input} placeholderTextColor="#512F07"></TextInput>
           </View>
           <View style={styles.inputs}>
-            <TextInput placeholder='Password' style={styles.input} placeholderTextColor="ghostwhite"></TextInput>
+            <TextInput placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
           </View>
           <Pressable onPress={() => navigation.navigate('Home')} style={styles.LoginButton}><Text>Login</Text></Pressable>
         </View>
@@ -43,9 +43,8 @@ const styles = StyleSheet.create({
       height: 100,
     },
     container: {
-      marginVertical: 50,
-      marginLeft: 10,
-      marginBottom: 25,
+      marginVertical: '15%',
+      marginLeft: '5%',
       
     },
     login: {
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
       borderColor: '#fcb900',
     },
     textButton1: {
-      color: 'ghostwhite',
+      color: '#fcb900',
     },
     button2:  {
       alignItems: 'center',
@@ -74,6 +73,9 @@ const styles = StyleSheet.create({
       width: 75,
       height: 50,
       backgroundColor: '#fcb900',
+    },
+    button2Text: {
+      color: 'white',
     },
     Icons: {
       marginTop: 15,
@@ -96,11 +98,14 @@ const styles = StyleSheet.create({
       backgroundColor: '#fcb900',
     },
     input: {
-      backgroundColor: 'rgba(6, 44, 73,0.3)',
-      height: 50,
-      width: 100,
-      borderBottomWidth: 3,
-      borderColor: 'gray',
+      backgroundColor: 'white',
+      paddingLeft: 15,
+      height: 35,
+      width: 135,
+      borderWidth: 0,
+      borderColor: 'lightgray',
+      borderRadius: 15,
+      fontSize: 12,
     },
     inputs: {
       marginTop: 50,
