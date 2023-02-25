@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useFonts } from 'expo-font';
 
 
@@ -51,7 +52,7 @@ export default function HomeScreen({navigation}) {
               </Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
-              <TouchableOpacity style={styles.container2.button}>
+              <TouchableOpacity style={styles.container2.button} onPress={() => navigation.navigate('AboutUs')}>
                   <Text style={{textAlign: 'center', color: 'ghostwhite'}}>More</Text>
               </TouchableOpacity>
             </View>
@@ -67,11 +68,11 @@ export default function HomeScreen({navigation}) {
         </View>
 
 
-        <ImageBackground source={require('./img/nourriture_1.jpg')} resizeMode="cover">
+        <ImageBackground source={require('./img/PXL_20230119_195156153_Original.jpg')} resizeMode="cover">
         <View style={styles.container3}>
           <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
-            <Text style={[styles.Title, {textAlign: 'center', marginTop: '20%'}]}>Menu</Text>
-            <TouchableOpacity style={[styles.container2.button, { marginTop: '140%'}]}>
+            <Text style={[styles.Title, {textAlign: 'center', marginTop: '7%'}]}>Menu</Text>
+            <TouchableOpacity style={[styles.container2.button, { marginTop: '155%'}]}>
               <Text style={{textAlign: 'center', color: 'ghostwhite'}}>Order</Text>
             </TouchableOpacity>
           </View>
@@ -96,21 +97,131 @@ export default function HomeScreen({navigation}) {
           </View>
         </View>
 
-
         <View style={styles.container5}>
+          <Image style={styles.container5.deco} source={require('./img/decoLong1.png')}/>
+          <Text style={styles.TitleGame}>Games & Store</Text>
+          <FontAwesome5 name={'dice-six'} size={40} color="lightgray" style={styles.deco}/>
           <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}}>
             <ScrollView horizontal>
-              <Image style={styles.container5.image} source={require('./img/eldenRing.jpg')}/>
-              <Image style={styles.container5.image} source={require('./img/boardGame_1.jpg')}/>
-              <Image style={styles.container5.image} source={require('./img/boardGame_1.jpg')}/>
-              <Image style={styles.container5.image} source={require('./img/boardGame_1.jpg')}/>
+              <View style={styles.container5.underContainer5}>
+                  <Image style={styles.container5.image} source={require('./img/game.png')}/>
+                  <View style={styles.container5.icons}>
+                    <View style={styles.container5.iconsText}>
+                      <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
+                      <Text>2 à 7</Text>
+                    </View>
+                    <View style={styles.container5.iconsText}>
+                      <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
+                      <Text>15 - 30'min</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.gameDescription}>Une partie de 7 Wonders se joue en trois « Âges » de 6 tours. Au début de chaque Âge, les joueurs reçoivent 7 cartes. Un Âge comporte 6 tours de jeu durant lesquels les participants vont mettre une carte en jeu qui leur permettra d’effectuer l’une des trois actions suivantes : construire un bâtiment, construire une étape de Merveille, ou recevoir 3 pièces d’or. Une merveille de jeu de stratégie !</Text>
+                  <TouchableOpacity style={[styles.container5.button, { marginTop: '5%'}]}><Text style={{textAlign: 'center', color: 'ghostwhite'}}>Play</Text></TouchableOpacity>
+              </View>
+              <View style={styles.container5.underContainer5}>
+                  <Image style={styles.container5.image} source={require('./img/game.png')}/>
+                  <View style={styles.container5.icons}>
+                    <View style={styles.container5.iconsText}>
+                      <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
+                      <Text>2 à 7</Text>
+                    </View>
+                    <View style={styles.container5.iconsText}>
+                      <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
+                      <Text>15 - 30'min</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.gameDescription}>Une partie de 7 Wonders se joue en trois « Âges » de 6 tours. Au début de chaque Âge, les joueurs reçoivent 7 cartes. Un Âge comporte 6 tours de jeu durant lesquels les participants vont mettre une carte en jeu qui leur permettra d’effectuer l’une des trois actions suivantes : construire un bâtiment, construire une étape de Merveille, ou recevoir 3 pièces d’or. Une merveille de jeu de stratégie !</Text>
+                  <TouchableOpacity style={[styles.container5.button, { marginTop: '5%'}]}><Text style={{textAlign: 'center', color: 'ghostwhite'}}>Play</Text></TouchableOpacity>
+              </View>
+              <View style={styles.container5.underContainer5}>
+                  <Image style={styles.container5.image} source={require('./img/game.png')}/>
+                  <View style={styles.container5.icons}>
+                    <View style={styles.container5.iconsText}>
+                      <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
+                      <Text>2 à 7</Text>
+                    </View>
+                    <View style={styles.container5.iconsText}>
+                      <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
+                      <Text>15 - 30'min</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.gameDescription}>Une partie de 7 Wonders se joue en trois « Âges » de 6 tours. Au début de chaque Âge, les joueurs reçoivent 7 cartes. Un Âge comporte 6 tours de jeu durant lesquels les participants vont mettre une carte en jeu qui leur permettra d’effectuer l’une des trois actions suivantes : construire un bâtiment, construire une étape de Merveille, ou recevoir 3 pièces d’or. Une merveille de jeu de stratégie !</Text>
+                  <TouchableOpacity style={[styles.container5.button, { marginTop: '5%'}]}><Text style={{textAlign: 'center', color: 'ghostwhite'}}>Play</Text></TouchableOpacity>
+              </View>
+              <View style={styles.container5.underContainer5}>
+                  <Image style={styles.container5.image} source={require('./img/game.png')}/>
+                  <View style={styles.container5.icons}>
+                    <View style={styles.container5.iconsText}>
+                      <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
+                      <Text>2 à 7</Text>
+                    </View>
+                    <View style={styles.container5.iconsText}>
+                      <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
+                      <Text>15 - 30'min</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.gameDescription}>Une partie de 7 Wonders se joue en trois « Âges » de 6 tours. Au début de chaque Âge, les joueurs reçoivent 7 cartes. Un Âge comporte 6 tours de jeu durant lesquels les participants vont mettre une carte en jeu qui leur permettra d’effectuer l’une des trois actions suivantes : construire un bâtiment, construire une étape de Merveille, ou recevoir 3 pièces d’or. Une merveille de jeu de stratégie !</Text>
+                  <TouchableOpacity style={[styles.container5.button, { marginTop: '5%'}]}><Text style={{textAlign: 'center', color: 'ghostwhite'}}>Play</Text></TouchableOpacity>
+              </View>
+              <View style={styles.container5.underContainer5}>
+                  <Image style={styles.container5.image} source={require('./img/game.png')}/>
+                  <View style={styles.container5.icons}>
+                    <View style={styles.container5.iconsText}>
+                      <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
+                      <Text>2 à 7</Text>
+                    </View>
+                    <View style={styles.container5.iconsText}>
+                      <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
+                      <Text>15 - 30'min</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.gameDescription}>Une partie de 7 Wonders se joue en trois « Âges » de 6 tours. Au début de chaque Âge, les joueurs reçoivent 7 cartes. Un Âge comporte 6 tours de jeu durant lesquels les participants vont mettre une carte en jeu qui leur permettra d’effectuer l’une des trois actions suivantes : construire un bâtiment, construire une étape de Merveille, ou recevoir 3 pièces d’or. Une merveille de jeu de stratégie !</Text>
+                  <TouchableOpacity style={[styles.container5.button, { marginTop: '5%'}]}><Text style={{textAlign: 'center', color: 'ghostwhite'}}>Play</Text></TouchableOpacity>
+              </View>
+              <View style={styles.container5.underContainer5}>
+                  <Image style={styles.container5.image} source={require('./img/game.png')}/>
+                  <View style={styles.container5.icons}>
+                    <View style={styles.container5.iconsText}>
+                      <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
+                      <Text>2 à 7</Text>
+                    </View>
+                    <View style={styles.container5.iconsText}>
+                      <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
+                      <Text>15 - 30'min</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.gameDescription}>Une partie de 7 Wonders se joue en trois « Âges » de 6 tours. Au début de chaque Âge, les joueurs reçoivent 7 cartes. Un Âge comporte 6 tours de jeu durant lesquels les participants vont mettre une carte en jeu qui leur permettra d’effectuer l’une des trois actions suivantes : construire un bâtiment, construire une étape de Merveille, ou recevoir 3 pièces d’or. Une merveille de jeu de stratégie !</Text>
+                  <TouchableOpacity style={[styles.container5.button, { marginTop: '5%'}]}><Text style={{textAlign: 'center', color: 'ghostwhite'}}>Play</Text></TouchableOpacity>
+              </View>
             </ScrollView>
           </View>
         </View>
 
 
         <View style={styles.container6}>
-          <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '160%'}}>
+          <Image style={styles.container6.deco} source={require('./img/decoLong1.png')}/>
+          <Text style={styles.TitleUsers}>Users</Text>
+          <FontAwesome5 name={'dice-six'} size={40} color="lightgray" style={styles.deco}/>
+
+          <View style={styles.container6.Users}>
+            <Image style={styles.container6.Images} source={require('./img/Profile1.png')}/>
+            <Text style={styles.container6.Pseudo}>Anubis_345</Text>
+            <Text style={styles.container6.Description}>Lorem ipsum dolor sit amet consectetur. Aliquam facilisis enim convallis et vitae.</Text>
+            <TouchableOpacity style={styles.container6.Add}><AntDesign name="pluscircleo" size={25} color="#fcb900"/></TouchableOpacity>
+          </View>
+
+          <View style={styles.container6.Users}>
+            <Image style={styles.container6.Images} source={require('./img/Profile2.png')}/>
+            <Text style={styles.container6.Pseudo}>Sobek_898</Text>
+            <Text style={styles.container6.Description}>Lorem ipsum dolor sit amet consectetur. Aliquam facilisis enim convallis et vitae.</Text>
+            <TouchableOpacity style={styles.container6.Add}><AntDesign name="pluscircleo" size={25} color="#fcb900"/></TouchableOpacity>
+          </View>
+
+          <View style={styles.container6.Users}>
+            <Image style={styles.container6.Images} source={require('./img/Profile3.png')}/>
+            <Text style={styles.container6.Pseudo}>Anubis_702</Text>
+            <Text style={styles.container6.Description}>Lorem ipsum dolor sit amet consectetur. Aliquam facilisis enim convallis et vitae.</Text>
+            <TouchableOpacity style={styles.container6.Add}><AntDesign name="pluscircleo" size={25} color="#fcb900"/></TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -167,25 +278,58 @@ const styles = StyleSheet.create({
     height: ScreenHeight,
   },
 
+  gameDescription: {
+    width: '100%',
+  },
+
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: 40,
 
     diceImage: {
-      width: 60,
-      height: 40,
+      width: '30%',
+      height: '175%',
     }
+  },
+  deco: {
+    marginBottom: '20%',
+    top: '5%',
+    left: '45%',
   },
 
   Title: {
+    left: '20%',
+    width: '100%',
     fontFamily: 'Beau-Rivage',
-    fontSize: 40,
+    fontSize: 70,
     color: '#E9BD1F',
     textShadowColor:'black',
     textShadowOffset:{width: 5, height: 5},
     textShadowRadius: 5,
 },
+  TitleGame: {
+    left: '5%',
+    width: '100%',
+    fontFamily: 'Beau-Rivage',
+    fontSize: 70,
+    color: '#E9BD1F',
+    textShadowColor:'black',
+    textShadowOffset:{width: 5, height: 5},
+    textShadowRadius: 5,
+  },
+
+  TitleUsers: {
+    top: '5%',
+    left: '32%',
+    width: '100%',
+    fontFamily: 'Beau-Rivage',
+    fontSize: 70,
+    color: '#E9BD1F',
+    textShadowColor:'black',
+    textShadowOffset:{width: 5, height: 5},
+    textShadowRadius: 5,
+  },
 
   container2: {
     backgroundColor: 'ghostwhite',
@@ -209,6 +353,11 @@ const styles = StyleSheet.create({
         fontSize: 8,
         color: 'black'
       }
+    },
+
+    decoLong: {
+      width: '15%',
+      height: '25%',
     },
 
     button: {
@@ -248,15 +397,91 @@ const styles = StyleSheet.create({
   container5: {
     backgroundColor: 'white',
     height: ScreenHeight,
+    width: '100%',
 
+    deco2: {
+      bottom: '5%',
+      right: '2%',
+    },
     image: {
-      height: ScreenHeight,
-      width: ScreenWidth + 10,
-    }
+      backgroundColor: 'red',
+      height: '50%',
+      width: '100%',
+    },
+    underContainer5: {
+      borderRadius: 15,
+      borderWidth: 3,
+      borderColor: '#fcb900',
+      left: '0%',
+      width: 300,
+      marginLeft: 56,
+      height: '85%',
+      padding: 15,
+      paddingBottom: 15,
+    },
+    deco: {
+      bottom: '10%',
+      right: '2%',
+    },
+    icons: {
+      justifyContent: 'space-evenly',
+      flexDirection: 'row',
+      marginBottom: 15,
+    },
+    iconsText: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    button: {
+      justifyContent: 'center',
+      backgroundColor: '#fcb900',
+      width: '50%',
+      height: '7%',
+      borderRadius: 15,
+      top: '1%',
+      left: '25%',
+    },
   },
 
   container6: {
     backgroundColor: 'white',
     height: ScreenHeight,
+    deco: {
+      top: '5%',
+      right: '2%',
+    },
+    Users: {
+      marginTop: '7%',
+      flexDirection: 'row',
+      left: '4%',
+      width: '85%',
+      height: '10%',
+      borderRadius: 15,
+      backgroundColor: 'rgba(51, 32, 9, 0.75)',
+    },
+    Images: {
+      height: '100%',
+      width: '25%',
+      borderRadius: 15,
+    },
+    Pseudo: {
+      fontSize: 18,
+      color: 'white',
+      left: '25%',
+      top: '2%',
+    },
+    Description: {
+      color: 'white',
+      position: 'absolute',
+      width: '60%',
+      height: '38%',
+      left: '31%',
+      top: '45%',
+      fontSize: 12,
+    },
+    Add: {
+      top: '3%',
+      left: '155%',
+    },
   }
 })
