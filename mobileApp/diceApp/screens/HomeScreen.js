@@ -35,8 +35,8 @@ export default function HomeScreen({navigation}) {
             <Ionicons name="search" size={40} color="ghostwhite" />
           </View>
           <View style={{justifyContent:"center", alignItems: "center", height: ScreenHeight, marginTop: -80, }}>
-            <Text style={styles.Title}>Welcome to</Text>
-            <Text style={styles.Title}>my Tavern !</Text>
+            <Text style={[styles.Title, {left: '20%'}]}>Welcome to</Text>
+            <Text style={[styles.Title, {left: '23%'}]}>my Tavern !</Text>
           </View>
         </View>
         </ImageBackground>
@@ -44,7 +44,7 @@ export default function HomeScreen({navigation}) {
 
         <View style={styles.container2}>
           <View style={{ alignItems: 'center', height: ScreenHeight, width: ScreenWidth}}>
-            <Text style={[styles.Title, {marginTop: 20, fontSize: 38, textShadowRadius: 0,}]}>About Us</Text>
+            <Text style={[styles.Title, {marginTop: 20, fontSize: 38, textShadowRadius: 0, left: '33%'}]}>About Us</Text>
             <FontAwesome5 name="asterisk" size={30} color="lightgrey" style={{marginTop: 10}}/>
             <View style={[styles.container2.smallTextView, {marginTop: 20}]}>
               <Text style={styles.container2.smallTextView.text}>
@@ -299,7 +299,6 @@ const styles = StyleSheet.create({
   },
 
   Title: {
-    left: '20%',
     width: '100%',
     fontFamily: 'Beau-Rivage',
     fontSize: 70,
