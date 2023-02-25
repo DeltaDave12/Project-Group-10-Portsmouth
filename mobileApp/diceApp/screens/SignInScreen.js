@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fcb900',
     },
     SignInButtonText: {
-      color: 'ghostwhite'
+      color: 'ghostwhite',
     },
     input: {
       backgroundColor: 'white',

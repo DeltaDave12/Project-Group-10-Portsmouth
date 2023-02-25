@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row', 
     justifyContent: 'space-evenly', 
-    alignItems: 'center', 
+    alignItems: 'center',
     borderStyle: 'solid',
     borderWidth: 4,
     borderColor: 'black',
