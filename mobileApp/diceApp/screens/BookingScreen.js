@@ -183,6 +183,5 @@ const styles = StyleSheet.create({
         left: 32,
         borderRadius: 10,
         backgroundColor: 'rgba(105, 65, 18, 0.6)',
-        
     },
 })

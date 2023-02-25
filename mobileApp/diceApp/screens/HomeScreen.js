@@ -30,8 +30,8 @@ export default function HomeScreen({navigation}) {
               </Text>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
-              <TouchableOpacity style={{  backgroundColor: 'lightblue', width:200}}>
-                  <Text style={{textAlign: 'center'}}>My button</Text>
+              <TouchableOpacity style={{  backgroundColor: 'lightblue', width:200}} onPress={() => navigation.navigate('AboutUs')}>
+                  <Text style={{textAlign: 'center'}}>More</Text>
               </TouchableOpacity>
             </View>
           </View>

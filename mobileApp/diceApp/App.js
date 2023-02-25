@@ -10,6 +10,7 @@ import BookingScreen  from './screens/BookingScreen'
 import MenuScreen  from './screens/MenuScreen'
 import NewsScreen  from './screens/NewsScreen'
 import ProfileScreen  from './screens/ProfileScreen'
+import AboutUsScreen from "./screens/AboutUsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ return (
     headerShown: false
   }}>
     <Stack.Screen name="SignIn" component={SignInScreen} />
+    <Stack.Screen name="AboutUs" component={AboutUsScreen} />
     <Stack.Screen name="Login" component={LoginScreen} />
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Booking" component={BookingScreen} />
