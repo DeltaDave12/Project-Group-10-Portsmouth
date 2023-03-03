@@ -228,9 +228,10 @@ export default function HomeScreen({navigation}) {
 
 
       <View style={styles.Footer}>
-            <View >
-                <Ionicons name="home" size={40} color="#323232" onPress={() => navigation.navigate('Home')}/>
-                <Text>Home</Text>
+            <View style={[styles.iconsFooter, {left: '15%'}]}>
+                <Ionicons name="home" size={40} color="#E9BD1F" onPress={() => navigation.navigate('Home')}/>
+                <Text style={{color: '#E9BD1F', bottom: 5}}>Home</Text>
+                <View style={{width: 70, backgroundColor: '#E9BD1F', height: 5, right: 15, borderRadius: 15}}></View>
             </View>
             <View style={styles.iconsFooter}>
                 <Ionicons name="calendar" size={40} color="#323232" onPress={() => navigation.navigate('Booking')}/>

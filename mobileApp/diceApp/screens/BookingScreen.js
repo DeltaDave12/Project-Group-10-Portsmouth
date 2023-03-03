@@ -51,9 +51,10 @@ export default function BookingScreen({navigation}) {
                 <Ionicons name="home" size={40} color="#323232" onPress={() => navigation.navigate('Home')}/>
                 <Text>Home</Text>
             </View>
-            <View style={styles.iconsFooter}>
-                <Ionicons name="calendar" size={40} color="#323232"/>
-                <Text>Booking</Text>
+            <View style={[styles.iconsFooter, {left: '15%'}]}>
+                <Ionicons name="calendar" size={40} color="#E9BD1F"/>
+                <Text style={{color: '#E9BD1F', bottom: 5}}>Booking</Text>
+                <View style={{width: 70, backgroundColor: '#E9BD1F', height: 5, right: 10, borderRadius: 15}}></View>
             </View>
             <View style={styles.iconsFooter}>
                 <Ionicons name="book-outline" size={40} color="#323232" onPress={() => navigation.navigate('Menu')}/>
