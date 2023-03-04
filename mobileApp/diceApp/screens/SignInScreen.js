@@ -1,9 +1,31 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Button, Image, Pressable, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, Alert, KeyboardAvoidingView, TextInput, Button, Image, Pressable, ImageBackground } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { initializeApp, registerVersion } from 'firebase/app'
+import { firebaseConfig } from '../firebaseConfig';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 
 export default function SignInScreen({navigation}){
+
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const handleCreateAccount = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential)=> {
+      console.log('Account created !')
+      const user = userCredential.user;
+      console.log(user)
+    })
+    .catch(error => {
+      console.log(error)
+      Alert.alert(error.message)
+    })
+  }
   return (
     <ImageBackground source={require('./img/portsmouthabouttop.jpg')} resizeMode="cover" style={styles.imageBk}>
       <LinearGradient
@@ -27,13 +49,13 @@ export default function SignInScreen({navigation}){
           <TextInput placeholder='Name' style={styles.input} placeholderTextColor="#512F07"></TextInput>
         </View>
         <View style={styles.inputs}>
-          <TextInput placeholder='Mail' style={styles.input} placeholderTextColor="#512F07"></TextInput>
-          <TextInput placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+          <TextInput onChangeText={(text) => setEmail(text)} placeholder='Mail' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+          <TextInput onChangeText={(text) => setPassword(text)} placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
         </View>
         <View style={styles.inputs1}>
           <TextInput placeholder='Birthday Date' style={styles.input} placeholderTextColor="#512F07"></TextInput>
         </View>
-        <Pressable onPress={() => navigation.navigate('Home')} style={styles.SignInButton}><Text style={styles.SignInButtonText}>Create</Text></Pressable>
+        <Pressable onPress={handleCreateAccount} style={styles.SignInButton}><Text style={styles.SignInButtonText}>Create</Text></Pressable>
       </View>
       
     </View>

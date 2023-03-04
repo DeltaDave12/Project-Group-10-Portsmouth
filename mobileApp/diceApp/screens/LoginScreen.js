@@ -1,9 +1,33 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, TextInput, Button, Image, Pressable, ImageBackground, CheckBox } from 'react-native'
+import { StyleSheet, Text, View, Alert, KeyboardAvoidingView, TextInput, Button, Image, Pressable, ImageBackground, CheckBox } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { initializeApp, registerVersion } from 'firebase/app'
+import { firebaseConfig } from '../firebaseConfig';
 
 export default function LoginScreen({navigation}){
+
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  
+  const  app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential)=> {
+      console.log('Logged In !')
+      const user = userCredential.user;
+      console.log(user)
+      navigation.navigate('Home')
+    })
+    .catch(error => {
+      console.log(error)
+      Alert.alert(error.message)
+    })
+  }
+
   return (
     <ImageBackground source={require('./img/portsmouthabouttop.jpg')} resizeMode="cover" style={styles.imageBk}>
         <LinearGradient
@@ -23,12 +47,13 @@ export default function LoginScreen({navigation}){
             <Ionicons name="logo-facebook" size={40} color="ghostwhite"/>
           </View>
           <View style={styles.inputs}>
-            <TextInput placeholder='Mail' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+            <TextInput onChangeText={(text) => setEmail(text)} placeholder='Mail' style={styles.input} placeholderTextColor="#512F07"></TextInput>
           </View>
           <View style={styles.inputs}>
-            <TextInput placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+            <TextInput onChangeText={(text) => setPassword(text)} placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
           </View>
-          <Pressable onPress={() => navigation.navigate('Home')} style={styles.LoginButton}><Text style={styles.LoginButtonText} >Login</Text></Pressable>
+          <Pressable onPress={handleSignIn} style={styles.LoginButton}><Text style={styles.LoginButtonText} >Login</Text></Pressable>
+          <Pressable style={styles.LoginButton}><Text style={styles.LoginButtonText} >Register</Text></Pressable>
         </View>
       </View>
     </ImageBackground>
@@ -50,7 +75,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     buttons: {
-      marginTop: 100,
+      marginTop: 10,
       width: 170,
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -111,7 +136,7 @@ const styles = StyleSheet.create({
       fontSize: 12,
     },
     inputs: {
-      marginTop: 50,
+      marginTop: 10,
       width: 250,
       justifyContent: 'center',
       flexDirection: 'row',
