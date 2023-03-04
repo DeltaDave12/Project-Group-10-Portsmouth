@@ -53,7 +53,6 @@ export default function LoginScreen({navigation}){
             <TextInput onChangeText={(text) => setPassword(text)} placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
           </View>
           <Pressable onPress={handleSignIn} style={styles.LoginButton}><Text style={styles.LoginButtonText} >Login</Text></Pressable>
-          <Pressable style={styles.LoginButton}><Text style={styles.LoginButtonText} >Register</Text></Pressable>
         </View>
       </View>
     </ImageBackground>
