@@ -21,10 +21,25 @@ export default function LoginScreen({navigation}){
       const user = userCredential.user;
       console.log(user)
       navigation.navigate('Home')
+      setEmail('')
+      setPassword('')
     })
     .catch(error => {
       console.log(error)
-      Alert.alert(error.message)
+      console.log(email)
+      Alert.alert(error.message, "Did you input the correct credentials ? Have you got an account ?",
+      [ 
+        {
+          text: "Go Back",
+        },
+        {
+          text: "Create Account",
+          onPress: () => {
+            navigation.navigate('SignIn')
+          }
+        },
+      ]
+    )
     })
   }
 
@@ -47,10 +62,10 @@ export default function LoginScreen({navigation}){
             <Ionicons name="logo-facebook" size={40} color="ghostwhite"/>
           </View>
           <View style={styles.inputs}>
-            <TextInput onChangeText={(text) => setEmail(text)} placeholder='Mail' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+            <TextInput value={email} onChangeText={(text) => setEmail(text)} placeholder='Mail' style={styles.input} placeholderTextColor="#512F07"></TextInput>
           </View>
           <View style={styles.inputs}>
-            <TextInput onChangeText={(text) => setPassword(text)} placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
+            <TextInput value={password} onChangeText={(text) => setPassword(text)} secureTextEntry = {true} placeholder='Password' style={styles.input} placeholderTextColor="#512F07"></TextInput>
           </View>
           <Pressable onPress={handleSignIn} style={styles.LoginButton}><Text style={styles.LoginButtonText} >Login</Text></Pressable>
         </View>

@@ -20,10 +20,18 @@ export default function SignInScreen({navigation}){
       console.log('Account created !')
       const user = userCredential.user;
       console.log(user)
+      setEmail('')
+      setPassword('')
     })
     .catch(error => {
       console.log(error)
-      Alert.alert(error.message)
+      Alert.alert(error.message, "Verify that the information that you wrote is correctly formated",
+      [ 
+        {
+          text: "OK",
+        },
+      ]
+    )
     })
   }
   return (
