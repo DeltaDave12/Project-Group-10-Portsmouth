@@ -72,7 +72,7 @@ export default function HomeScreen({navigation}) {
         <View style={styles.container3}>
           <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
             <Text style={[styles.Title, {textAlign: 'center', marginTop: '7%'}]}>Menu</Text>
-            <TouchableOpacity style={[styles.container2.button, { marginTop: '155%'}]}>
+            <TouchableOpacity style={[styles.container2.button, { marginTop: '155%'}]} onPress={() => navigation.navigate('Menu')}>
               <Text style={{textAlign: 'center', color: 'ghostwhite'}}>Order</Text>
             </TouchableOpacity>
           </View>
@@ -85,12 +85,18 @@ export default function HomeScreen({navigation}) {
             <Text style={[styles.Title,{textAlign: 'center', textShadowRadius: 0,}]}>Events</Text>
             <FontAwesome5 name="asterisk" size={30} color="lightgrey" style={{marginTop: 10, alignItems: 'center'}}/>
             <View style={{ marginTop: 20}}>
+
+            
               <ScrollView horizontal>
                 <Image style={styles.container4.image} source={require('./img/eventExample_1.png')}/>
                 <Image style={styles.container4.image} source={require('./img/eventExample_1.png')}/>
                 <Image style={styles.container4.image} source={require('./img/eventExample_1.png')}/>
                 <Image style={styles.container4.image} source={require('./img/eventExample_1.png')}/>
               </ScrollView>
+              <View style={{flexDirection: 'row', justifyContent: 'space-evenly', position: 'absolute', top: '12%'}}>
+              <AntDesign name="left" size={32} color="black" style={{right: '10%'}}/>
+              <AntDesign name="right" size={32} color="black" style={{left: '1075%'}}/>
+            </View>
             </View>
             <View>
             </View>
@@ -102,6 +108,12 @@ export default function HomeScreen({navigation}) {
           <Text style={styles.TitleGame}>Games & Store</Text>
           <FontAwesome5 name={'dice-six'} size={40} color="lightgray" style={styles.deco}/>
           <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center',}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-evenly', position: 'absolute'}}>
+              <AntDesign name="left" size={25} color="#fcb900" style={{right: '700%'}}/>
+              <AntDesign name="right" size={25} color="#fcb900" style={{left: '700%'}}/>
+            </View>
+
+
             <ScrollView horizontal>
               <View style={styles.container5.underContainer5}>
                   <Image style={styles.container5.image} source={require('./img/game.png')}/>
