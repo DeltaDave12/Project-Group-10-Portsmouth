@@ -50,7 +50,7 @@ export default function MenuScreen({navigation}) {
 
     const addItemOnClick = () => {
         
-        items += this.value
+        items += 3 //value of balises
     }
 
     const showItems = () => {
