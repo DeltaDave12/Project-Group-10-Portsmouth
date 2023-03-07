@@ -6,8 +6,36 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useFonts } from 'expo-font';
+import { Audio } from 'expo-av';
+
+
+
+  
 
 export default function MenuScreen({navigation}) {
+    
+    //Sound effect 
+    const [sound, setSound] = React.useState();
+
+    async function playSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync( require('../assets/pop.mp3')
+        );
+        setSound(sound);
+        console.log('Playing Sound');
+        await sound.playAsync();
+      }
+    
+      React.useEffect(() => {
+        return sound
+          ? () => {
+              console.log('Unloading Sound');
+              sound.unloadAsync();
+            }
+          : undefined;
+      }, [sound]);
+
+    //Fonts
     let [fontsloaded] = useFonts({
         'Beau-Rivage': require('../assets/fonts/BeauRivage-Regular.ttf'),
         'inter': require('../assets/fonts/Inter-VariableFont_slntwght.ttf'),
@@ -15,7 +43,21 @@ export default function MenuScreen({navigation}) {
     
       if (!fontsloaded) {
         return null;
-      }
+    }
+
+    //Items That you Buy
+    let items = []
+
+    const addItemOnClick = () => {
+        
+        items += this.value
+    }
+
+    const showItems = () => {
+        const stringItems = JSON.stringify(items)
+        console.log('Your items are :' + stringItems)
+    }
+
   return (
     <View>
         <ScrollView>
@@ -30,6 +72,9 @@ export default function MenuScreen({navigation}) {
                 <Text style={styles.Title}>Menu</Text>
             </View>
             <View style={styles.Menu}>
+                <View style={{flexDirection: 'row', justifyContent: 'center', paddingTop: 20}}>
+                    <TouchableOpacity onPress={showItems}><Image source={require('./img/grocery100.png')} style={{width: 50, height: 50, flexDirection: 'row', alignItems: 'center',}}/></TouchableOpacity>
+                </View>
                 <Text style={styles.TitleMenu}>Drinks</Text>
                 <Text style={[styles.TitleMenuSecondary, {top: '1%'}]}>Hot Drinks</Text>
                 <View style={{marginTop: 100, left: '5%', width: '85%'}} >
@@ -38,14 +83,13 @@ export default function MenuScreen({navigation}) {
                 </View>
                 <View style={styles.DrinksMenu}>
                     <View style={styles.imageMenu}>
-                        
                         <View>
                             <View  style={styles.imagesMenu}>
                                 <Image source={require('./img/coffe1.png')} style={styles.imageMenu}/>
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Espresso / Long Black</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity value="Exrpesso" onPress={addItemOnClick}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.40</Text>
                                 </View>
@@ -56,7 +100,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Mocha</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.25</Text>
                                 </View>
@@ -69,7 +113,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Cappuccino / Flat White / Latte</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.95</Text>
                                 </View>
@@ -79,7 +123,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Hot Chocolate</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.5</Text>
                                 </View>
@@ -92,7 +136,7 @@ export default function MenuScreen({navigation}) {
                             <Image source={require('./img/extras.png')}/>
                             <View style={{flexDirection: 'row'}}>
                                 <Text style={styles.MenuText}>Pot of Tea</Text>
-                                <TouchableOpacity style={{left: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                <TouchableOpacity onPress={playSound} style={{left: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                             </View>
                             <Text style={styles.MenuInfo}>£2.5</Text>
                         </View>
@@ -126,7 +170,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Coca Cola</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                 </View>
@@ -137,7 +181,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Diet Coke / Coke Zero / Pepsi Max</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£1.80</Text>
                                 </View>
@@ -151,7 +195,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Dr Pepper</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -161,7 +205,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>R. Whites Lemonade</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£1.80</Text>
                                     </View>
@@ -174,7 +218,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Barr American Cream Soda</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£1.80</Text>
                                     </View>
@@ -184,7 +228,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Old Jamaica Ginger Beer</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -197,7 +241,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>San Pellegrino Blood Orange</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -207,7 +251,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>J2O - Apple & Raspberry</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -229,7 +273,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Heineken Alcohol Free (330ml)</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.80</Text>
                                 </View>
@@ -240,7 +284,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Coors Light (500ml)</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.90</Text>
                                 </View>
@@ -254,7 +298,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Peroni (330ml)</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.90</Text>
                                     </View>
@@ -264,7 +308,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Fullers London Pride (500ml)</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.25</Text>
                                     </View>
@@ -277,8 +321,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Cornish Orchards -Gold Cider (500ml)</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                        </View>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                        </View> 
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.50</Text>
                                     </View>
                             </View>
@@ -287,7 +331,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'55%'}]}>Weihenstephaner HefeWeissbier (500ml)</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£5.25</Text>
                                     </View>
@@ -300,7 +344,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Erdinger Dunkel (500ml)</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£5.25</Text>
                                     </View>
@@ -310,7 +354,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Old Mout Fruit Cider (500ml)</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.50</Text>
                                     </View>
@@ -333,7 +377,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'45%'}]}>Cavatina Pinot Grigio, Venezie Italy</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.00/4.00/5.50/16.00)</Text>
                                 </View>
@@ -344,7 +388,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Waipapa Bay Sauvignon Blanc, Marlborough</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.50/4.50/6.50/18.50)</Text>
                                 </View>
@@ -358,7 +402,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '65%'}]}>Borde Rio Malbec, Mendoza Argentina</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.00/4.00/5.50/16.50)</Text>
                                     </View>
@@ -368,7 +412,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Campo Dorado Rioja Crianza, Spain</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.50/4.50/6.50/18.50)</Text>
                                     </View>
@@ -381,7 +425,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Prosecco Spumante DOC, Italy</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(4.00/ - / - /19.50)</Text>
                                     </View>
@@ -409,7 +453,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Roasted corn nuts</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                 </View>
@@ -420,7 +464,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Pretzels</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                 </View>
@@ -434,7 +478,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Cheddars</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -444,7 +488,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Wasabi peas</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -457,7 +501,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Pork scratchings</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -467,7 +511,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'55%'}]}>Chilli rice crackers</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -480,7 +524,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Tomato & basil savoury bites</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -490,7 +534,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Mixed sweets </Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -511,7 +555,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Turkey Pesto</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
@@ -522,7 +566,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Tuna Melt</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
@@ -536,7 +580,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Spicy Pizza</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.75</Text>
                                     </View>
@@ -546,7 +590,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Ham and brie</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                     </View>
@@ -559,7 +603,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Reuben</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                     </View>
@@ -569,7 +613,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'55%'}]}>Cheese and pesto</Text>
-                                            <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                     </View>
@@ -591,7 +635,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Ham & Cheese</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4</Text>
                                 </View>
@@ -602,7 +646,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Tuna, Mayonnaise & Cheese</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.5</Text>
                                 </View>
@@ -626,7 +670,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Turkey, chorizo & cheddar</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
@@ -637,8 +681,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Pulled jackfruit & cheddar</Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                    </View>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                    </View> 
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
                             </View>
@@ -669,7 +713,7 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Chocolate Brownie </Text>
-                                        <TouchableOpacity><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={playSound}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.5</Text>
                                 </View>

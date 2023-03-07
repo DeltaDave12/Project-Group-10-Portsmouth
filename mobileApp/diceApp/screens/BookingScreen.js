@@ -1,20 +1,64 @@
-import { StyleSheet, Text, View, Button, Image, ScrollView, TextInput, Pressable } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, Button, Image, ScrollView, TextInput, Pressable, Alert } from 'react-native'
+import React, { useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ImageBackground } from 'react-native-web';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useFonts } from 'expo-font';
+import { getFirestore, doc, setDoc, addDoc, collection } from "firebase/firestore";
+import { initializeApp, registerVersion } from 'firebase/app'
+import { firebaseConfig } from '../firebaseConfig';
+
 
 export default function BookingScreen({navigation}) {
+    
+    //Initialize Firestore
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    
+    //States to get TextInput values
+    const [name, setName] = React.useState('')
+    const [lastname, setLastname] = React.useState('')
+    const [mail, setMail] = React.useState('')
+    const [phone, setPhone] = React.useState('')
+    const [date, setDate] = React.useState('')
+    const [hour, setHour] = React.useState('')
+    const [nbrPeople, setNbrPeople] = React.useState('')
+    const [message, setMessage] = React.useState('')
+
+    //newReservation adds reservation in our firestore
+    function newReservation() {
+        try {
+            const docRef = addDoc(collection(db, "reservations"), {
+              Name: name,
+              Lastname: lastname,
+              Mail: mail,
+              Phone: phone,
+              Date: date,
+              Hour: hour,
+              NumberOfPeople: nbrPeople,
+              Message: message
+            });
+            console.log("Document written with ID: ", docRef.id);
+            Alert.alert("Reservation completed :" + name + lastname + "on" + date + "at" + hour)
+        } catch (e) {
+            Alert.alert("Something went wrong :( !")
+            console.error("Error adding document: ", e);
+        }
+    }
+        
+
+    // Load the fonts
     let [fontsloaded] = useFonts({
         'Beau-Rivage': require('../assets/fonts/BeauRivage-Regular.ttf'),
         'inter': require('../assets/fonts/Inter-VariableFont_slntwght.ttf'),
-      });
+    });
     
-      if (!fontsloaded) {
+    if (!fontsloaded) {
         return null;
-      }
+    }
+    
+
   return (
     <View>
         <ScrollView>
@@ -33,15 +77,15 @@ export default function BookingScreen({navigation}) {
                 <FontAwesome5 name={'dice-six'} size={40} color="lightgray" style={styles.deco}/>
 
                 <View style={styles.bookSection}>
-                    <TextInput placeholder='Name' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
-                    <TextInput placeholder='Lastname' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
-                    <TextInput placeholder='Mail' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
-                    <TextInput placeholder='Phone Number' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
-                    <TextInput placeholder='Date' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
-                    <TextInput placeholder='Hour' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
-                    <TextInput placeholder='Number of people' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
-                    <TextInput placeholder='Message' style={styles.inputS} placeholderTextColor="white" multiline={true} numberOfLines={10}></TextInput>
-                    <Pressable style={styles.button}><Text style={styles.textButton} >Send</Text></Pressable>
+                    <TextInput value={name} onChangeText={(text) => setName(text)} placeholder='Name' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput value={lastname} onChangeText={(text) => setLastname(text)} placeholder='Lastname' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput value={mail} onChangeText={(text) => setMail(text)} placeholder='Mail' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput value={phone} onChangeText={(text) => setPhone(text)} placeholder='Phone Number' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput value={date} onChangeText={(text) => setDate(text)} placeholder='Date' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput value={hour} onChangeText={(text) => setHour(text)} placeholder='Hour' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput value={nbrPeople} onChangeText={(text) => setNbrPeople(text)} placeholder='Number of people' style={styles.input} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput value={message} onChangeText={(text) => setMessage(text)} placeholder='Message' style={styles.inputS} placeholderTextColor="white" multiline={true} numberOfLines={10}></TextInput>
+                    <Pressable style={styles.button} onPress={newReservation}><Text style={styles.textButton} >Send</Text></Pressable>
                 </View>
             </View>
         </ScrollView>
