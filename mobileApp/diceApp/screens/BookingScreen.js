@@ -7,6 +7,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useFonts } from 'expo-font';
 import { getFirestore, doc, setDoc, addDoc, collection } from "firebase/firestore";
 import { initializeApp, registerVersion } from 'firebase/app'
+import { getAuth } from 'firebase/auth';
 import { firebaseConfig } from '../firebaseConfig';
 
 
@@ -15,9 +16,11 @@ export default function BookingScreen({navigation}) {
     //Initialize Firestore
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    
+    const auth = getAuth(app);
+    const user = userCredential.user;
+
     //States to get TextInput values
-    const [name, setName] = React.useState('')
+    const [name, setName] = React.useState(user.email)
     const [lastname, setLastname] = React.useState('')
     const [mail, setMail] = React.useState('')
     const [phone, setPhone] = React.useState('')

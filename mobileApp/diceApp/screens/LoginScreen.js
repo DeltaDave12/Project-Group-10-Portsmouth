@@ -20,6 +20,7 @@ export default function LoginScreen({navigation}){
       console.log('Logged In !')
       const user = userCredential.user;
       console.log(user)
+      console.log(user.email)
       navigation.navigate('Home')
       setEmail('')
       setPassword('')
@@ -42,6 +43,8 @@ export default function LoginScreen({navigation}){
     )
     })
   }
+
+
 
   return (
     <ImageBackground source={require('./img/portsmouthabouttop.jpg')} resizeMode="cover" style={styles.imageBk}>
