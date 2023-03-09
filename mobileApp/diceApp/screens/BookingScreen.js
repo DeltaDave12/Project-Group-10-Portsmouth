@@ -16,11 +16,9 @@ export default function BookingScreen({navigation}) {
     //Initialize Firestore
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    const auth = getAuth(app);
-    const user = userCredential.user;
 
     //States to get TextInput values
-    const [name, setName] = React.useState(user.email)
+    const [name, setName] = React.useState('')
     const [lastname, setLastname] = React.useState('')
     const [mail, setMail] = React.useState('')
     const [phone, setPhone] = React.useState('')
