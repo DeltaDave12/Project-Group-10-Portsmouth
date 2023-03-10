@@ -75,7 +75,7 @@ export default function MenuScreen({navigation}) {
             </View>
             <Modal visible={modalVisible} useNativeDriver={true} onRequestClose={() => {setModalVisible(!modalVisible);}}>
                 <Button
-                    onPress={() => setModalVisible(!modalVisible)} title='Close Modal'>
+                    onPress={() => setModalVisible(!modalVisible)} title='Close Kart'>
                 </Button>
                 <View>
                     {itemsArray.map(element => <Text>{element}</Text>)}
@@ -107,7 +107,7 @@ export default function MenuScreen({navigation}) {
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Espresso / Long Black</Text>
                                         <TouchableOpacity onPress={ () => itemsArray.push('Expresso')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Expresso')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => itemsArray.pop('Expresso')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.40</Text>
                                 </View>
