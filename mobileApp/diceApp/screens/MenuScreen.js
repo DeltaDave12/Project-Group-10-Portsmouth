@@ -16,7 +16,7 @@ export default function MenuScreen({navigation}) {
     const [sound, setSound] = React.useState();
     const [modalVisible, setModalVisible] = useState(false);
     const [currentItems, setCurrentItems] = useState('');
-    const [itemsArray, setItemsArray] = useState()
+    const [itemsArray, setItemsArray] = useState([])
 
     async function playSound() {
         console.log('Loading Sound');
@@ -75,11 +75,17 @@ export default function MenuScreen({navigation}) {
             </View>
             <Modal visible={modalVisible} useNativeDriver={true} onRequestClose={() => {setModalVisible(!modalVisible);}}>
                 <Button
+                    onPress={() => setModalVisible(!modalVisible)} title='Close Modal'>
+                </Button>
+                <View>
+                    {itemsArray.map(element => <Text>{element}</Text>)}
+                </View>
+                {/* <Button
                 onPress={() => setModalVisible(!modalVisible)} title='Close Modal'>
                 </Button>
                 <View>
                     <Text>{currentItems}</Text>
-                </View>
+                </View> */}
             </Modal>
             <View style={styles.Menu}>
                 <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: 20}}>
