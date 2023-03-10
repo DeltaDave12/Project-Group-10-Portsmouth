@@ -80,7 +80,7 @@ export default function MenuScreen({navigation}) {
                 <View>
                     {itemsArray.map(element => <Text>{element}</Text>)}
                 </View>
-                {/* <Button
+                {/* NE PAS ENLEVER, C UN BACKUP AU CAS OÙ <Button
                 onPress={() => setModalVisible(!modalVisible)} title='Close Modal'>
                 </Button>
                 <View>
