@@ -220,6 +220,7 @@ export default function MenuScreen({navigation}) {
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Dr Pepper</Text>
                                             <TouchableOpacity onPress={ () => itemsArray.push('Dr Pepper')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => itemsArray.pop('Dr Pepper')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
