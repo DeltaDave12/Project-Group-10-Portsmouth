@@ -8,7 +8,7 @@ import SignInScreen  from './screens/SignInScreen'
 import LoginScreen  from './screens/LoginScreen'
 import BookingScreen  from './screens/BookingScreen'
 import MenuScreen  from './screens/MenuScreen'
-import NewsScreen  from './screens/NewsScreen'
+import GameScreen  from './screens/GameScreen'
 import ProfileScreen  from './screens/ProfileScreen'
 import AboutUsScreen from "./screens/AboutUsScreen";
 
@@ -25,7 +25,7 @@ return (
     <Stack.Screen name="Home" component={HomeScreen} />
     <Stack.Screen name="Booking" component={BookingScreen} />
     <Stack.Screen name="Menu" component={MenuScreen} />
-    <Stack.Screen name="News" component={NewsScreen} />
+    <Stack.Screen name="Game" component={GameScreen} />
     <Stack.Screen name="Profile" component={ProfileScreen} />
   </Stack.Navigator>
 );

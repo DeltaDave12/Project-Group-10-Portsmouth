@@ -106,7 +106,7 @@ export default function BookingScreen({navigation}) {
                 <Text>Menu</Text>
             </View>
             <View style={styles.iconsFooter}>
-            <FontAwesome5 name={'dice'} size={40} color="#323232" onPress={() => navigation.navigate('News')}/>
+            <FontAwesome5 name={'dice'} size={40} color="#323232" onPress={() => navigation.navigate('Game')}/>
                 <Text>Games</Text>
             </View>
             <View style={styles.iconsFooter}>

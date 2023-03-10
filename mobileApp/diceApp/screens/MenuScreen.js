@@ -764,7 +764,7 @@ export default function MenuScreen({navigation}) {
                 <View style={{width: 70, backgroundColor: '#E9BD1F', height: 5, right: 17, borderRadius: 15}}></View>
             </View>
             <View style={styles.iconsFooter}>
-            <FontAwesome5 name={'dice'} size={40} color="#323232" onPress={() => navigation.navigate('News')}/>
+            <FontAwesome5 name={'dice'} size={40} color="#323232" onPress={() => navigation.navigate('Game')}/>
                 <Text>Games</Text>
             </View>
             <View style={styles.iconsFooter}>
