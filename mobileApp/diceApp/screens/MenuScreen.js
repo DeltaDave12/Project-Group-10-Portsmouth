@@ -16,7 +16,7 @@ export default function MenuScreen({navigation}) {
     const [sound, setSound] = React.useState();
     const [modalVisible, setModalVisible] = useState(false);
     const [currentItems, setCurrentItems] = useState('');
-    const [itemsArray, setItemsArray] = useState(Array)
+    const [itemsArray, setItemsArray] = useState()
 
     async function playSound() {
         console.log('Loading Sound');
@@ -39,7 +39,7 @@ export default function MenuScreen({navigation}) {
     //Items That you Buy
 
     const showItems = () => {
-        let stringItems = JSON.stringify(itemsArray)
+        let stringItems = itemsArray.toString()
         setCurrentItems(stringItems)
         console.log(stringItems)
     }
