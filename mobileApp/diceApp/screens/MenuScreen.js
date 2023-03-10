@@ -44,6 +44,21 @@ export default function MenuScreen({navigation}) {
         console.log(stringItems)
     }
 
+        if (itemsArray.length > 0) {
+          return (
+                <TouchableOpacity onPress={functionForModal} style={{backgroundColor: '#E9BD1F', width: '100%', height: '6%', position: 'absolute',top: '86%', justifyContent: 'center'}}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Ionicons name="basket-outline" size={30} color="ghostwhite" style={{left: '35%', bottom: '1%'}}/>
+                        <Text style={{left: '50%', color: 'white'}}>Order : {itemsArray.length}</Text>
+                    </View>
+                </TouchableOpacity>
+          )
+        }
+        else {
+            return
+        }
+      }
+
     const functionForModal = () => {
         showItems()
         setModalVisible(true)
@@ -73,25 +88,33 @@ export default function MenuScreen({navigation}) {
                 </View>
                 <Text style={styles.Title}>Menu</Text>
             </View>
-            <Modal visible={modalVisible} useNativeDriver={true} onRequestClose={() => {setModalVisible(!modalVisible);}}>
-                <Button
-                    onPress={() => setModalVisible(!modalVisible)} title='Close Kart'>
-                </Button>
+            
+
+            <Modal visible={modalVisible} animationType='slide' useNativeDriver={true} onRequestClose={() => {setModalVisible(!modalVisible);}}>
+                <TouchableOpacity
+                    style={{backgroundColor: '#E9BD1F', width: '100%', height: '5%', borderBottomEndRadius: 5, borderBottomStartRadius: 5, justifyContent: 'center', alignItems: 'center'}}
+                    onPress={() => setModalVisible(!modalVisible)} title='Close kart'>
+                        <Text style={{color:'white', fontSize: 20}}>Close Kart</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => {setItemsArray([]), showItems()}} style={{marginTop: 20, backgroundColor: 'red', width:'50%', borderRadius: 15, alignItems: 'center', left: '25%'}}><Text style={{color:'white'}}>Remove All</Text></TouchableOpacity>
+                <TouchableOpacity style={{backgroundColor: '#E9BD1F', width: '50%', height: '5%', left: '40%', borderRadius: 15, alignItems: 'center', justifyContent: 'center', top: '80%'}}><Text style={{color:'white'}}>Make Payment</Text></TouchableOpacity>
+                <ScrollView style={{}}>
                 <View>
-                    {itemsArray.map(element => <Text>{element}</Text>)}
+                    {itemsArray.map(element => <Text style={{color:'#512F07', fontSize: 25, left: '5%'}}>- {element}</Text>)}
                 </View>
+                
+
                 {/* NE PAS ENLEVER, C UN BACKUP AU CAS OÙ <Button
                 onPress={() => setModalVisible(!modalVisible)} title='Close Modal'>
                 </Button>
                 <View>
                     <Text>{currentItems}</Text>
                 </View> */}
+                </ScrollView>
             </Modal>
+
+
             <View style={styles.Menu}>
-                <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingTop: 20}}>
-                    <TouchableOpacity onPress={functionForModal}><Image source={require('./img/grocery100.png')} style={{width: 50, height: 50, flexDirection: 'row', alignItems: 'center',}}/></TouchableOpacity>
-                    <TouchableOpacity onPress={() => setItemsArray([])} style={{marginTop: 20}}><Text>Remove Items</Text></TouchableOpacity>
-                </View>
                 <Text style={styles.TitleMenu}>Drinks</Text>
                 <Text style={[styles.TitleMenuSecondary, {top: '1%'}]}>Hot Drinks</Text>
                 <View style={{marginTop: 100, left: '5%', width: '85%'}} >
@@ -106,8 +129,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Espresso / Long Black</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Expresso')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Expresso')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Expresso'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Expresso'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.40</Text>
                                 </View>
@@ -118,8 +141,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Mocha</Text>
-                                        <TouchableOpacity onPress={() => itemsArray.push('Mocca')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Mocca')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={() => {itemsArray.push('Mocca'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Mocca'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.25</Text>
                                 </View>
@@ -132,8 +155,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Cappuccino / Flat White / Latte</Text>
-                                        <TouchableOpacity onPress={() => itemsArray.push('Cappucino')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Cappucino')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={() => {itemsArray.push('Cappucino'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {right: '80%'}]}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Cappucino'), showItems()}} style={{right: '87%', top: '10%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={[styles.plusIcon]}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.95</Text>
                                 </View>
@@ -143,8 +166,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Hot Chocolate</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Hot Chocolate')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Hot Chocolate')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Hot Chocolate'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Hot Chocolate'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.5</Text>
                                 </View>
@@ -157,8 +180,8 @@ export default function MenuScreen({navigation}) {
                             <Image source={require('./img/extras.png')}/>
                             <View style={{flexDirection: 'row'}}>
                                 <Text style={styles.MenuText}>Pot of Tea</Text>
-                                <TouchableOpacity onPress={ () => itemsArray.push('Pot of tea')} style={{left: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                <TouchableOpacity onPress={ () => itemsArray.pop('Pot of tea')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                <TouchableOpacity onPress={ () => {itemsArray.push('Pot of tea'), showItems()}} style={{left: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                <TouchableOpacity onPress={ () => {itemsArray.pop('Pot of tea'), showItems()}} style={{left: '80%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                             </View>
                             <Text style={styles.MenuInfo}>£2.5</Text>
                         </View>
@@ -192,8 +215,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Coca Cola</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Coca Cola')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Coca Cola')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Coca Cola'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Coca Cola'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                 </View>
@@ -204,8 +227,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Diet Coke / Coke Zero / Pepsi Max</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Diet Coke')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Diet Coke')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Diet Coke'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Diet Coke'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£1.80</Text>
                                 </View>
@@ -219,8 +242,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Dr Pepper</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Dr Pepper')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Dr Pepper')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Dr Pepper'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Dr Pepper'), showItems()}} style={{left: '80%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -230,8 +253,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>R. Whites Lemonade</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('R. Whites Lemonade')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('R. Whites Lemonade')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('R. Whites Lemonade'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('R. Whites Lemonade'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£1.80</Text>
                                     </View>
@@ -244,8 +267,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Barr American Cream Soda</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('American Cream Soda')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Amercian Cream Soda')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('American Cream Soda'), showItems()}} style={{right: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Amercian Cream Soda'), showItems()}} style={{right: '45%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£1.80</Text>
                                     </View>
@@ -255,8 +278,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Old Jamaica Ginger Beer</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Old Jamaica Ginger Beer')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Old Jamaica Ginger Beer')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Old Jamaica Ginger Beer'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Old Jamaica Ginger Beer'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -269,8 +292,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>San Pellegrino Blood Orange</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('San Pellegrino Blood Orange')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('San Pellegrino Blood Orange')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('San Pellegrino Blood Orange'), showItems()}} style={{right: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('San Pellegrino Blood Orange'), showItems()}} style={{right: '45%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -280,8 +303,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>J2O - Apple & Raspberry</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('J20 - Apple & Raspberry')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('J20 - Apple & Raspberry')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('J20 - Apple & Raspberry'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('J20 - Apple & Raspberry'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -303,8 +326,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Heineken Alcohol Free (330ml)</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Heineken Alcohol Free')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Heineken Alcohol Free')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Heineken Alcohol Free'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Heineken Alcohol Free'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.80</Text>
                                 </View>
@@ -315,8 +338,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Coors Light (500ml)</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Coors Light')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Coors Light')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Coors Light'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Coors Light'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.90</Text>
                                 </View>
@@ -330,8 +353,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Peroni (330ml)</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Peroni')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Peroni')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Peroni'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Peroni'), showItems()}} style={{left: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£3.90</Text>
                                     </View>
@@ -341,8 +364,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Fullers London Pride (500ml)</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Fullers London Pride')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Fullers London Pride')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Fullers London Pride'), showItems()}} style={{left: '25%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Fullers London Pride'), showItems()}} style={{left: '25%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.25</Text>
                                     </View>
@@ -355,8 +378,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Cornish Orchards -Gold Cider (500ml)</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Cornish Orchards - Gold Cider')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Cornish Orchards - Gold Cider')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Cornish Orchards - Gold Cider'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Cornish Orchards - Gold Cider'), showItems()}} style={{left: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View> 
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.50</Text>
                                     </View>
@@ -366,8 +389,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'55%'}]}>Weihenstephaner HefeWeissbier (500ml)</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Weihenstep Hefe Weissbier')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Weihenstep Hefe Weissbier')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Weihenstep Hefe Weissbier'), showItems()}} style={{left: '25%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Weihenstep Hefe Weissbier'), showItems()}} style={{left: '25%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£5.25</Text>
                                     </View>
@@ -380,8 +403,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Erdinger Dunkel (500ml)</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Erdinger Dunkel')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Erdinger Dunkel')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Erdinger Dunkel'), showItems()}} style={{right: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Erdinger Dunkel'), showItems()}} style={{right: '45%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£5.25</Text>
                                     </View>
@@ -391,8 +414,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Old Mout Fruit Cider (500ml)</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Old Mount Fruit Cider')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Old Mount Fruit Cider')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Old Mount Fruit Cider'), showItems()}} style={{left: '15%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Old Mount Fruit Cider'), showItems()}} style={{left: '25%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.50</Text>
                                     </View>
@@ -415,8 +438,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'45%'}]}>Cavatina Pinot Grigio, Venezie Italy</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Cavatina Pinot Grigio')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Cavatina Pinot Grigio')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Cavatina Pinot Grigio'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Cavatina Pinot Grigio'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.00/4.00/5.50/16.00)</Text>
                                 </View>
@@ -427,8 +450,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Waipapa Bay Sauvignon Blanc, Marlborough</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Waipapa Bay Sauvignon Blanc')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Waipapa Bay Sauvignon Blanc')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Waipapa Bay Sauvignon Blanc'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Waipapa Bay Sauvignon Blanc'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.50/4.50/6.50/18.50)</Text>
                                 </View>
@@ -442,8 +465,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '65%'}]}>Borde Rio Malbec, Mendoza Argentina</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Borde Rio Malbec')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Borde Rio Malbec')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Borde Rio Malbec'), showItems()}} style={{right: '25%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Borde Rio Malbec'), showItems()}} style={{left: '10%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.00/4.00/5.50/16.50)</Text>
                                     </View>
@@ -453,8 +476,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Campo Dorado Rioja Crianza, Spain</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Campo Dorado Rioja Crianza')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Campo Dorado Rioja Crianza')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Campo Dorado Rioja Crianza'), showItems()}} style={{left: '30%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Campo Dorado Rioja Crianza'), showItems()}} style={{right: '37%', top: '10%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(3.50/4.50/6.50/18.50)</Text>
                                     </View>
@@ -467,8 +490,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Prosecco Spumante DOC, Italy</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Prosecco Spumante DOC')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Prosecco Spumante DOC')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Prosecco Spumante DOC'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Prosecco Spumante DOC'), showItems()}} style={{left: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£(4.00/ - / - /19.50)</Text>
                                     </View>
@@ -496,8 +519,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Roasted corn nuts</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Roasted Corn Nuts')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Roasted Corn Nuts')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Roasted Corn Nuts'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Roasted Corn Nuts'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                 </View>
@@ -508,8 +531,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Pretzels</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Pretzels')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Pretzels')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Pretzels'), showItems()}} style={{right: '50%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Pretzels'), showItems()}} style={{right: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                 </View>
@@ -523,8 +546,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Cheddars</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Cheddars')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Cheddars')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Cheddars'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Cheddars'), showItems()}} style={{left: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2</Text>
                                     </View>
@@ -534,8 +557,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Wasabi peas</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Wasabi Peas')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Wasabi Peas')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Wasabi Peas'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Wasabi Peas'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -548,8 +571,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Pork scratchings</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Pork scratchings')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Pork scratchings')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Pork scratchings'), showItems()}} style={{right: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Pork scratchings'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -559,8 +582,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'55%'}]}>Chilli rice crackers</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Chili rice crackers')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Chili rice crackers')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Chili rice crackers'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Chili rice crackers'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -573,8 +596,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Tomato & basil savoury bites</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Tomato & basil savoury bites')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Tomato & basil savoury bites')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Tomato & basil savoury bites'), showItems()}} style={{right: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Tomato & basil savoury bites'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -584,8 +607,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Mixed sweets </Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Mixed sweets')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Mixed sweets')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Mixed sweets'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Mixed sweets'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£2.5</Text>
                                     </View>
@@ -606,8 +629,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Turkey Pesto</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Turkey Pesto')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Turkey Pesto')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Turkey Pesto'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Turkey Pesto'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
@@ -618,8 +641,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Tuna Melt</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Tuna melt')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Tuna melt')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Tuna melt'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Tuna melt'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
@@ -633,8 +656,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuTextDrinks, {marginLeft: '5%', width: '45%'}]}>Spicy Pizza</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Spicy Pizza')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Spicy Pizza')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Spicy Pizza'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Spicy Pizza'), showItems()}} style={{left: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.75</Text>
                                     </View>
@@ -644,8 +667,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Ham and brie</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Ham and Brie')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Ham and Brie')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Ham and Brie'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Ham and Brie'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                     </View>
@@ -658,8 +681,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'65%'}]}>Reuben</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Reuben')}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Reuben')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Reuben'), showItems()}} style={{right: '80%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={[styles.plusIcon, {left: '5%'}]}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Reuben'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                     </View>
@@ -669,8 +692,8 @@ export default function MenuScreen({navigation}) {
                                     <View style={styles.description}>
                                         <View style={{flexDirection: 'row',}}>
                                             <Text style={[styles.MenuText, {marginLeft: '5%', width:'55%'}]}>Cheese and pesto</Text>
-                                            <TouchableOpacity onPress={ () => itemsArray.push('Cheese and pesto')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                            <TouchableOpacity onPress={ () => itemsArray.pop('Cheese and pesto')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.push('Cheese and pesto'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                            <TouchableOpacity onPress={ () => {itemsArray.pop('Cheese and pesto'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                         </View>
                                         <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                     </View>
@@ -692,8 +715,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Ham & Cheese</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Ham & Cheese')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Ham & Cheese')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Ham & Cheese'), showItems()}} style={{left: '50%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Ham & Cheese'), showItems()}} style={{left: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4</Text>
                                 </View>
@@ -704,8 +727,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Tuna, Mayonnaise & Cheese</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Tuna, Mayonnaise & Cheese')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Tuna, Mayonnaise & Cheese')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Tuna, Mayonnaise & Cheese'), showItems()}} style={{left: '25%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Tuna, Mayonnaise & Cheese'), showItems()}} style={{right: '40%', top: '15%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.5</Text>
                                 </View>
@@ -729,8 +752,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Turkey, chorizo & cheddar</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Turkey, chorizo & cheddar')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Turkey, chorizo & cheddar')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Turkey, chorizo & cheddar'), showItems()}} style={{left: '50%'}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Turkey, chorizo & cheddar'), showItems()}} style={{left: '50%'}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
@@ -741,8 +764,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'60%'}]}>Pulled jackfruit & cheddar</Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Pulled jackfruit & cheddar')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Pulled jackfruit & cheddar')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Pulled jackfruit & cheddar'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Pulled jackfruit & cheddar'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View> 
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£6.95</Text>
                                 </View>
@@ -774,8 +797,8 @@ export default function MenuScreen({navigation}) {
                                 <View style={styles.description}>
                                     <View style={{flexDirection: 'row',}}>
                                         <Text style={[styles.MenuText, {marginLeft: '5%', width:'50%'}]}>Chocolate Brownie </Text>
-                                        <TouchableOpacity onPress={ () => itemsArray.push('Chocolate Brownie')}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
-                                        <TouchableOpacity onPress={ () => itemsArray.pop('Chocolate Brownie')}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.push('Chocolate Brownie'), showItems()}}><AntDesign name="plus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
+                                        <TouchableOpacity onPress={ () => {itemsArray.pop('Chocolate Brownie'), showItems()}}><AntDesign name="minus" size={25} color="#E9BD1F" style={styles.plusIcon}/></TouchableOpacity>
                                     </View>
                                     <Text style={[styles.MenuInfo, {marginLeft: '5%'}]}>£4.5</Text>
                                 </View>
@@ -793,6 +816,7 @@ export default function MenuScreen({navigation}) {
             
 
         </ScrollView>
+        <Basket/>
         <View style={styles.Footer}>
             <View style={styles.iconsFooter}>
                 <Ionicons name="home" size={40} color="#323232" onPress={() => navigation.navigate('Home')}/>
@@ -893,7 +917,7 @@ const styles = StyleSheet.create({
         left: '700%'
     },
     Menu: {
-        height: 9650,
+        height: 9850,
     },
     TitleMenu: {
         fontFamily: 'Beau-Rivage',
@@ -935,7 +959,7 @@ const styles = StyleSheet.create({
         height: 2500,
     },
     plusIcon: {
-        left: '5%',
+        right: '50%',
     },
     imagesMenu: {
         width: '80%',
