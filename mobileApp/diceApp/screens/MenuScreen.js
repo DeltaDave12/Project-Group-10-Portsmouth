@@ -44,6 +44,7 @@ export default function MenuScreen({navigation}) {
         console.log(stringItems)
     }
 
+    const Basket = () => {
         if (itemsArray.length > 0) {
           return (
                 <TouchableOpacity onPress={functionForModal} style={{backgroundColor: '#E9BD1F', width: '100%', height: '6%', position: 'absolute',top: '86%', justifyContent: 'center'}}>
