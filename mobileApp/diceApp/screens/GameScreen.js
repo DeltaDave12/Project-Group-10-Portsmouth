@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button, Image, ScrollView, TextInput, Pressable, Alert, TouchableOpacity, Modal, TouchableOpacityComponent } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ImageBackground } from 'react-native-web';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -15,11 +15,43 @@ import NumericInput from 'react-native-numeric-input'
 export default function GameScreen({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
 
-    const gamesObject = {
-        Name: String,
-        NbrOfPlayers: Number,
-        TimeOfPlay: Number,
-    }
+    //Searchbar States
+    const [searchBar, setSearchBar] = useState();
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+
+    //Filter States
+    let [numberOfPlayers, setNumberOfPlayers] = useState();
+    let [amountOfMinutes, setAmountOfMinutes] = useState();
+    let [kindOfGame, setKindOfGame] = useState();
+    const [difficuty, setDifficulty] = useState();
+
+    //Some Games for SearchBar demo
+    //ID goes from 1 to 23
+    const gameObject = [
+        {
+            id: 1,
+            title: "3 Wishes",
+            numberOfPlayers: "3-5",
+            timeOfPlay: "3-5 min",
+            description: "3 Wishes is a simple card game with only 18 cards in the deck. There are 3 different types of wish cards that players are trying to get in front of them. The 3 different types of wishes are Superpower (blue), Gift (yellow), and World Harmony (pink). And players will spend the game switching cards around between players and the available cards in the center as they work to collect the right mix of cards for themselves."
+        },
+        {
+            id: 2,
+            title: "Arcadia",
+            numberOfPlayers: "2-4",
+            timeOfPlay: "60 min",
+            description: "In Arcadia Quest, players lead guilds of intrepid heroes on an epic campaign to dethrone the vampire lord and reclaim the mighty Arcadia for their own. But only one guild may lead in the end, so players must battle against each other as well as against the monstrous occupying forces."
+        },
+        {
+            id: 3,
+            title: "7 Wonders",
+            numberOfPlayers: "2-7",
+            timeOfPlay: "15-30 min",
+            description: "A game of 7 Wonders is played in three “Ages” of 6 rounds. At the start of each Age, players are dealt 7 cards. An Age has 6 game turns during which the participants will put a card into play that will allow them to perform one of the following three actions: build a building, build a Wonder stage, or receive 3 gold coins. A wonderful strategy game !"
+        },
+    ]
+
 
   return (
       <View>
@@ -36,7 +68,7 @@ export default function GameScreen({navigation}) {
             </View>
             <View style={[styles.middlePage]}>
                 <View style={{flexDirection: 'row'}}>
-                    <TextInput placeholder='Search' style={[styles.input, {top: '5%'}]} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput placeholder='Search' onChangeText={(text) => setSearchBar(text)} style={[styles.input, {top: '5%'}]} placeholderTextColor="white" multiline={true}></TextInput>
                     <TouchableOpacity onPress={() => setModalVisible(true)} style={{width: '25%', position: 'absolute', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', left: '70%', top: '80%'}}>
                         <FontAwesome5 name={'filter'} size={25} color="#512F07" style={{}} />
                         <Text style={{left: '0%', color: '#512F07'}}>filter</Text>
@@ -101,7 +133,7 @@ export default function GameScreen({navigation}) {
         
 
                 </Modal>
-                
+
                 <View style={{flexDirection: 'row'}}>
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G1.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
