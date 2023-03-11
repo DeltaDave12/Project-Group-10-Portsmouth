@@ -14,11 +14,22 @@ import NumericInput from 'react-native-numeric-input'
 
 export default function GameScreen({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
+
+    //Searchbar States
     const [searchBar, setSearchBar] = useState();
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+
+    //Filter States
     let [numberOfPlayers, setNumberOfPlayers] = useState();
     let [amountOfMinutes, setAmountOfMinutes] = useState();
     let [kindOfGame, setKindOfGame] = useState();
     const [difficuty, setDifficulty] = useState();
+
+    //Some Games for SearchBar demo
+    //Index goes from 0 to 22
+    const gamesNameArray = ['3 wishes', 'Arcadia Quest', 'Architectura', 'Architectura', 'Assembly', 'Avalon', 'Azul', 'Buccaneer Bones', 'Bucket of Doom', 'Carcassonne', 'Cash N Guns', 'Catan', 'Celesta', 'Champions of Midguard' , 'Clans of caledonia', 'Cobra Paw', 'Codenames', 'Colony', 'Colour brain', 'Colt express', 'Concept', 'Cortex', 'Coup']
+
 
   return (
       <View>
@@ -100,9 +111,17 @@ export default function GameScreen({navigation}) {
         
 
                 </Modal>
+
+                {
+                        filteredData.map((item, index) => {
+                            return (
+
+                            )
+                        })
+                }
                 
                 <View style={{flexDirection: 'row'}}>
-                        <View style={styles.gameElement}>
+                        <View key={} style={styles.gameElement}>
                             <Image source={require('./img/G1.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>3-5</Text>
