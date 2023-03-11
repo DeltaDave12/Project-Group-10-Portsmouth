@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useFonts } from 'expo-font';
 
@@ -27,19 +28,18 @@ export default function HomeScreen({navigation}) {
   return (
     <View>
       <ScrollView >
-        <ImageBackground source={require('./img/leeThrowingDice.jpg')} resizeMode="cover">
         <View style={styles.container1}>
           <View style={styles.header}>
-            <Ionicons name="menu" size={40} color="ghostwhite" />
-            <Image style={styles.header.diceImage} source={require('./img/LOGO_White.fw.png')}/>
-            <Ionicons name="search" size={40} color="ghostwhite" />
+            <Ionicons name="menu" size={40} color="black" style={{left: '45%'}}/>
+            <Image style={styles.header.diceImage} source={require('./img/LOGO_Black.png')}/>
+            <Ionicons name="search" size={40} color="black" style={{right: '45%'}}/>
           </View>
           <View style={{justifyContent:"center", alignItems: "center", height: ScreenHeight, marginTop: -80, }}>
             <Text style={[styles.Title, {left: '20%'}]}>Welcome to</Text>
             <Text style={[styles.Title, {left: '23%'}]}>my Tavern !</Text>
+            <MaterialCommunityIcons name="gesture-swipe-down" size={40} color="black" style={{position: 'absolute', top: '85%'}}/>
           </View>
         </View>
-        </ImageBackground>
 
 
         <View style={styles.container2}>
@@ -67,8 +67,12 @@ export default function HomeScreen({navigation}) {
           </View>
         </View>
 
-
         <ImageBackground source={require('./img/PXL_20230119_195156153_Original.jpg')} resizeMode="cover">
+        <LinearGradient
+          // Background Linear Gradient
+          colors={['rgba(0,0,0,0.50)', 'transparent']}
+          style={{width: '100%'}}
+        >
         <View style={styles.container3}>
           <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
             <Text style={[styles.Title, {textAlign: 'center', marginTop: '7%'}]}>Menu</Text>
@@ -77,6 +81,7 @@ export default function HomeScreen({navigation}) {
             </TouchableOpacity>
           </View>
         </View>
+        </LinearGradient>
         </ImageBackground>
 
 
