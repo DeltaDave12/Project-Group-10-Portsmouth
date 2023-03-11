@@ -14,12 +14,11 @@ import NumericInput from 'react-native-numeric-input'
 
 export default function GameScreen({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
-
-    const gamesObject = {
-        Name: String,
-        NbrOfPlayers: Number,
-        TimeOfPlay: Number,
-    }
+    const [searchBar, setSearchBar] = useState();
+    let [numberOfPlayers, setNumberOfPlayers] = useState();
+    let [amountOfMinutes, setAmountOfMinutes] = useState();
+    let [kindOfGame, setKindOfGame] = useState();
+    const [difficuty, setDifficulty] = useState();
 
   return (
       <View>
@@ -36,7 +35,7 @@ export default function GameScreen({navigation}) {
             </View>
             <View style={[styles.middlePage]}>
                 <View style={{flexDirection: 'row'}}>
-                    <TextInput placeholder='Search' style={[styles.input, {top: '5%'}]} placeholderTextColor="white" multiline={true}></TextInput>
+                    <TextInput placeholder='Search' onChangeText={(text) => setSearchBar(text)} style={[styles.input, {top: '5%'}]} placeholderTextColor="white" multiline={true}></TextInput>
                     <TouchableOpacity onPress={() => setModalVisible(true)} style={{width: '25%', position: 'absolute', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', left: '70%', top: '80%'}}>
                         <FontAwesome5 name={'filter'} size={25} color="#512F07" style={{}} />
                         <Text style={{left: '0%', color: '#512F07'}}>filter</Text>
