@@ -14,6 +14,13 @@ import NumericInput from 'react-native-numeric-input'
 
 export default function GameScreen({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
+
+    const gamesObject = {
+        Name: String,
+        NbrOfPlayers: Number,
+        TimeOfPlay: Number,
+    }
+
   return (
       <View>
         <ScrollView>
@@ -126,10 +133,10 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                 </View>
-                <View style={{flexDirection: 'row', top: '5%'}}>
+                <View style={{flexDirection: 'row', top: '5%',}}>
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G3.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
-                            <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
+                            <View style={{ flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-7</Text>
                                 <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
                                 <Text>15-30 min</Text>
