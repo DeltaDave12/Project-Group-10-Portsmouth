@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button, Image, ScrollView, TextInput, Pressable, Alert, TouchableOpacity, Modal, TouchableOpacityComponent } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ImageBackground } from 'react-native-web';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -27,8 +27,30 @@ export default function GameScreen({navigation}) {
     const [difficuty, setDifficulty] = useState();
 
     //Some Games for SearchBar demo
-    //Index goes from 0 to 22
-    const gamesNameArray = ['3 wishes', 'Arcadia Quest', 'Architectura', 'Architectura', 'Assembly', 'Avalon', 'Azul', 'Buccaneer Bones', 'Bucket of Doom', 'Carcassonne', 'Cash N Guns', 'Catan', 'Celesta', 'Champions of Midguard' , 'Clans of caledonia', 'Cobra Paw', 'Codenames', 'Colony', 'Colour brain', 'Colt express', 'Concept', 'Cortex', 'Coup']
+    //ID goes from 1 to 23
+    const gameObject = [
+        {
+            id: 1,
+            title: "3 Wishes",
+            numberOfPlayers: "3-5",
+            timeOfPlay: "3-5 min",
+            description: "3 Wishes is a simple card game with only 18 cards in the deck. There are 3 different types of wish cards that players are trying to get in front of them. The 3 different types of wishes are Superpower (blue), Gift (yellow), and World Harmony (pink). And players will spend the game switching cards around between players and the available cards in the center as they work to collect the right mix of cards for themselves."
+        },
+        {
+            id: 2,
+            title: "Arcadia",
+            numberOfPlayers: "2-4",
+            timeOfPlay: "60 min",
+            description: "In Arcadia Quest, players lead guilds of intrepid heroes on an epic campaign to dethrone the vampire lord and reclaim the mighty Arcadia for their own. But only one guild may lead in the end, so players must battle against each other as well as against the monstrous occupying forces."
+        },
+        {
+            id: 3,
+            title: "7 Wonders",
+            numberOfPlayers: "2-7",
+            timeOfPlay: "15-30 min",
+            description: "A game of 7 Wonders is played in three “Ages” of 6 rounds. At the start of each Age, players are dealt 7 cards. An Age has 6 game turns during which the participants will put a card into play that will allow them to perform one of the following three actions: build a building, build a Wonder stage, or receive 3 gold coins. A wonderful strategy game !"
+        },
+    ]
 
 
   return (
@@ -112,16 +134,8 @@ export default function GameScreen({navigation}) {
 
                 </Modal>
 
-                {
-                        filteredData.map((item, index) => {
-                            return (
-
-                            )
-                        })
-                }
-                
                 <View style={{flexDirection: 'row'}}>
-                        <View key={} style={styles.gameElement}>
+                        <View style={styles.gameElement}>
                             <Image source={require('./img/G1.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>3-5</Text>
