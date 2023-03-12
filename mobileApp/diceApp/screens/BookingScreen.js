@@ -68,8 +68,6 @@ export default function BookingScreen({navigation}) {
                 <View style={styles.overImage}></View>
                     <Image source={require('./img/LOGO_White.fw.png')} style={styles.Logo}/>
                 <View style={styles.Icons}>
-                    <Ionicons name="menu" size={40} color="ghostwhite" style={styles.icon1}/>
-                    <Ionicons name="search" size={40} color="ghostwhite" style={styles.icon2}/>
                 </View>
                 <Text style={styles.Title}>Booking</Text>
             </View>

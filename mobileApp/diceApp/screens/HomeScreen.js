@@ -30,9 +30,7 @@ export default function HomeScreen({navigation}) {
       <ScrollView >
         <View style={styles.container1}>
           <View style={styles.header}>
-            <Ionicons name="menu" size={40} color="black" style={{left: '45%'}}/>
             <Image style={styles.header.diceImage} source={require('./img/LOGO_Black.png')}/>
-            <Ionicons name="search" size={40} color="black" style={{right: '45%'}}/>
           </View>
           <View style={{justifyContent:"center", alignItems: "center", height: ScreenHeight, marginTop: -80, }}>
             <Text style={[styles.Title, {left: '20%'}]}>Welcome to</Text>
@@ -306,8 +304,11 @@ const styles = StyleSheet.create({
     paddingTop: 40,
 
     diceImage: {
-      width: '30%',
-      height: '175%',
+      position: 'absolute',
+      top: 40,
+      left: '33%',
+      width: '35%',
+      height: 80,
     }
   },
   deco: {

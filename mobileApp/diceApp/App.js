@@ -11,6 +11,7 @@ import MenuScreen  from './screens/MenuScreen'
 import GameScreen  from './screens/GameScreen'
 import ProfileScreen  from './screens/ProfileScreen'
 import AboutUsScreen from "./screens/AboutUsScreen";
+import WishesScreen from "./screens/WishesScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +28,7 @@ return (
     <Stack.Screen name="Menu" component={MenuScreen} />
     <Stack.Screen name="Game" component={GameScreen} />
     <Stack.Screen name="Profile" component={ProfileScreen} />
+    <Stack.Screen name="3Wishes" component={WishesScreen} />
   </Stack.Navigator>
 );
 }

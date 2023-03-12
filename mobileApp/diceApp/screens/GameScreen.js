@@ -61,8 +61,6 @@ export default function GameScreen({navigation}) {
                     <View style={styles.overImage}></View>
                         <Image source={require('./img/LOGO_White.fw.png')} style={styles.Logo}/>
                     <View style={styles.Icons}>
-                        <Ionicons name="menu" size={40} color="ghostwhite" style={styles.icon1}/>
-                        <Ionicons name="search" size={40} color="ghostwhite" style={styles.icon2}/>
                     </View>
                     <Text style={styles.Title}>Games</Text>
             </View>
@@ -148,7 +146,7 @@ export default function GameScreen({navigation}) {
                                 There are 3 different types of wish cards that players are trying to get in front of them. The 3 different types of wishes are Superpower (blue), Gift (yellow), and World Harmony (pink). And players will spend the game 
                                 switching cards around between players and the available cards in the center as they work to collect the right mix of cards for themselves.
                             </Text>
-                            <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
+                            <TouchableOpacity style={styles.playButton} onPress={() => navigation.navigate('3Wishes')}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G2.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
