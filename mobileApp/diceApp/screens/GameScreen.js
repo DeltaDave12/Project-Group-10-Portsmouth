@@ -15,42 +15,20 @@ import NumericInput from 'react-native-numeric-input'
 export default function GameScreen({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
 
-    //Searchbar States
-    const [searchBar, setSearchBar] = useState();
-    const [data, setData] = useState([]);
-    const [filteredData, setFilteredData] = useState([]);
-
     //Filter States
     let [numberOfPlayers, setNumberOfPlayers] = useState();
     let [amountOfMinutes, setAmountOfMinutes] = useState();
     let [kindOfGame, setKindOfGame] = useState();
     const [difficuty, setDifficulty] = useState();
 
+    //Searchbar States
+    const [searchBar, setSearchBar] = useState('');
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+
     //Some Games for SearchBar demo
     //ID goes from 1 to 23
-    const gameObject = [
-        {
-            id: 1,
-            title: "3 Wishes",
-            numberOfPlayers: "3-5",
-            timeOfPlay: "3-5 min",
-            description: "3 Wishes is a simple card game with only 18 cards in the deck. There are 3 different types of wish cards that players are trying to get in front of them. The 3 different types of wishes are Superpower (blue), Gift (yellow), and World Harmony (pink). And players will spend the game switching cards around between players and the available cards in the center as they work to collect the right mix of cards for themselves."
-        },
-        {
-            id: 2,
-            title: "Arcadia",
-            numberOfPlayers: "2-4",
-            timeOfPlay: "60 min",
-            description: "In Arcadia Quest, players lead guilds of intrepid heroes on an epic campaign to dethrone the vampire lord and reclaim the mighty Arcadia for their own. But only one guild may lead in the end, so players must battle against each other as well as against the monstrous occupying forces."
-        },
-        {
-            id: 3,
-            title: "7 Wonders",
-            numberOfPlayers: "2-7",
-            timeOfPlay: "15-30 min",
-            description: "A game of 7 Wonders is played in three “Ages” of 6 rounds. At the start of each Age, players are dealt 7 cards. An Age has 6 game turns during which the participants will put a card into play that will allow them to perform one of the following three actions: build a building, build a Wonder stage, or receive 3 gold coins. A wonderful strategy game !"
-        },
-    ]
+    const gameTitleArray = ['3 wishes', 'Arcadia Quest', '7 Wonders', '7 Wonders', 'Architectura', 'Assembly', 'Avalon', 'Azul', 'Buccaneer Bones', 'Bucket of Doom', 'Carcassonne', 'Cash n Guns', 'Catan', 'Champions of Midguard' , 'Clans of caledonia', 'Cobra Paw', 'Codenames', 'Colony', 'Colour brain', 'Colt express', 'Concept', 'Cortex', 'Coup']
 
 
   return (
@@ -135,21 +113,24 @@ export default function GameScreen({navigation}) {
                 </Modal>
 
                 <View style={{flexDirection: 'row'}}>
+                    {gameTitleArray[0].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
-                            <Image source={require('./img/G1.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
-                            <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
-                                <Text>3-5</Text>
-                                <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
-                                <Text>3-5 min</Text>
-                                <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
-                            </View>
-                            <Text style={{width: '85%', left: '10%', top: '9%'}}>
-                                3 Wishes is a simple card game with only 18 cards in the deck.
-                                There are 3 different types of wish cards that players are trying to get in front of them. The 3 different types of wishes are Superpower (blue), Gift (yellow), and World Harmony (pink). And players will spend the game 
-                                switching cards around between players and the available cards in the center as they work to collect the right mix of cards for themselves.
-                            </Text>
-                            <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
+                        <Image source={require('./img/G1.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
+                        <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
+                            <Text>3-5</Text>
+                            <MaterialIcons name="perm-identity" size={25} color="#fcb900"/>
+                            <Text>3-5 min</Text>
+                            <AntDesign name="clockcircleo" size={25} color="#fcb900"/>
                         </View>
+                        <Text style={{width: '85%', left: '10%', top: '9%'}}>
+                            3 Wishes is a simple card game with only 18 cards in the deck.
+                            There are 3 different types of wish cards that players are trying to get in front of them. The 3 different types of wishes are Superpower (blue), Gift (yellow), and World Harmony (pink). And players will spend the game 
+                            switching cards around between players and the available cards in the center as they work to collect the right mix of cards for themselves.
+                        </Text>
+                        <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
+                        </View>
+                    }
+                    {gameTitleArray[1].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G2.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -164,8 +145,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '5%',}}>
+                    {gameTitleArray[2].toLowerCase().includes(searchBar.toLowerCase()) && 
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G3.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{ flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -180,6 +163,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                        }
+                    {gameTitleArray[3].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G4.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -195,8 +180,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                        }   
                 </View>
                 <View style={{flexDirection: 'row', top: '10%'}}>
+                    {gameTitleArray[4].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G5.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -211,6 +198,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[5].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G6.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -226,8 +215,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '15%'}}>
+                    {gameTitleArray[6].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G7.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -242,6 +233,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[7].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G8.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -255,8 +248,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '20%'}}>
+                    {gameTitleArray[8].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G9.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -271,6 +266,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }  
+                    {gameTitleArray[9].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G10.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -284,8 +281,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '25%'}}>
+                    {gameTitleArray[10].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G11.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -299,6 +298,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[11].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G12.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -312,8 +313,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '30%'}}>
+                    {gameTitleArray[12].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G13.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -327,6 +330,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[13].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G14.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -340,8 +345,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '35%'}}>
+                    {gameTitleArray[14].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G15.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -355,6 +362,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[15].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G16.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -368,8 +377,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '40%'}}>
+                    {gameTitleArray[16].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G17.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -384,6 +395,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[17].toLowerCase().includes(searchBar.toLowerCase()) &&  
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G18.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -397,8 +410,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '45%'}}>
+                    {gameTitleArray[18].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G19.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -413,6 +428,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[19].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G20.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -426,8 +443,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '50%'}}>
+                    {gameTitleArray[20].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G21.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -441,6 +460,8 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
+                    {gameTitleArray[21].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G22.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -454,8 +475,10 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
                 <View style={{flexDirection: 'row', top: '55%'}}>
+                    {gameTitleArray[22].toLowerCase().includes(searchBar.toLowerCase()) &&
                         <View style={styles.gameElement}>
                             <Image source={require('./img/G23.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
@@ -470,6 +493,7 @@ export default function GameScreen({navigation}) {
                             </Text>
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
+                    }
                 </View>
             </View>
         </ScrollView>
