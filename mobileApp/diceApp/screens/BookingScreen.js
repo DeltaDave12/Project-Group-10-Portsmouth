@@ -16,6 +16,9 @@ export default function BookingScreen({navigation}) {
     //Initialize Firestore
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const email = user.email;
 
     //States to get TextInput values
     const [name, setName] = React.useState('')
@@ -69,7 +72,7 @@ export default function BookingScreen({navigation}) {
                     <Image source={require('./img/LOGO_White.fw.png')} style={styles.Logo}/>
                 <View style={styles.Icons}>
                 </View>
-                <Text style={styles.Title}>Booking</Text>
+                <Text style={styles.Title}>Booking {email}</Text>
             </View>
             <View style={styles.bottomPage}>
                 <Text style={styles.bottomPageText}>Lorem ipsum dolor sit amet consectetur. Odio in vel ipsum mauris in id cras pulvinar scelerisque. Nec donec nascetur non eget quis amet lorem. Pellentesque enim orci pellentesque faucibus egestas tincidunt. Eget ornare cras aliquam diam sed risus molestie adipiscing aliquet. Nisl phasellus mattis eu in consequat. Mauris mattis aliquet sodales etiam orci cum. Mollis aenean leo consequat malesuada. Risus molestie mattis purus suspendisse accumsan orci cras etiam. Imperdiet porta congue praesent mi cursus molestie sit tincidunt eros.</Text>
