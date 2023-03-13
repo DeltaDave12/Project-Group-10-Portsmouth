@@ -12,9 +12,11 @@ import GameScreen  from './screens/GameScreen'
 import ProfileScreen  from './screens/ProfileScreen'
 import AboutUsScreen from "./screens/AboutUsScreen";
 import WishesScreen from "./screens/WishesScreen";
+import AchievmentScreen from "./screens/AchievementScreen";
 
 const Stack = createNativeStackNavigator();
 
+/*THIS IS PRIOR VERSION OF REACT NATIVE "react-native": "0.70.5"*/
 export const AppNavigator = () => {
 return (
   <Stack.Navigator screenOptions={{
@@ -29,6 +31,7 @@ return (
     <Stack.Screen name="Game" component={GameScreen} />
     <Stack.Screen name="Profile" component={ProfileScreen} />
     <Stack.Screen name="3Wishes" component={WishesScreen} />
+    <Stack.Screen name="Achievement" component={AchievmentScreen}/>
   </Stack.Navigator>
 );
 }
