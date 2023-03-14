@@ -31,7 +31,7 @@ return (
     <Stack.Screen name="Game" component={GameScreen} />
     <Stack.Screen name="Profile" component={ProfileScreen} />
     <Stack.Screen name="3Wishes" component={WishesScreen} />
-    <Stack.Screen name="Achievement" component={AchievmentScreen}/>
+    <Stack.Screen name="Achievement" component={AchievmentScreen} />
   </Stack.Navigator>
 );
 }
