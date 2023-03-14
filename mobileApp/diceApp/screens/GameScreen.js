@@ -43,12 +43,13 @@ export default function GameScreen({navigation}) {
                     <Text style={styles.Title}>Games</Text>
             </View>
             <View style={[styles.middlePage]}>
-                <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'row', marginBottom: 45}}>
                     <TextInput placeholder='Search' onChangeText={(text) => setSearchBar(text)} style={[styles.input, {top: '5%'}]} placeholderTextColor="white" multiline={true}></TextInput>
                     <TouchableOpacity onPress={() => setModalVisible(true)} style={{width: '25%', position: 'absolute', alignItems: 'center', justifyContent: 'center', flexDirection: 'row', left: '70%', top: '80%'}}>
                         <FontAwesome5 name={'filter'} size={25} color="#512F07" style={{}} />
                         <Text style={{left: '0%', color: '#512F07'}}>filter</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity style={{backgroundColor:'#fcb900',position: 'absolute', width: 200, height: 50, borderRadius: 5, left: '25%',top: '250%', justifyContent: 'center', alignItems: 'center'}} onPress={() => navigation.navigate('Achievement')}><Text style={{color: 'white'}}>What is your favorite game ?</Text></TouchableOpacity>
                 </View>
                 <Modal
                     animationType="fade"

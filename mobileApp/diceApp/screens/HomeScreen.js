@@ -239,14 +239,6 @@ export default function HomeScreen({navigation}) {
             <TouchableOpacity style={styles.container6.Add}><AntDesign name="pluscircleo" size={25} color="#fcb900"/></TouchableOpacity>
           </View>
         </View>
-        <View style={styles.container6}>
-          <View style={styles.container6.Users}>
-              <Image style={styles.container6.Images} source={require('./img/Profile3.png')}/>
-              <Text style={styles.container6.Pseudo}>AI PAGE</Text>
-              <Text style={styles.container6.Description}>Lorem ipsum dolor sit amet consectetur. Aliquam facilisis enim convallis et vitae.</Text>
-              <TouchableOpacity style={styles.container6.Add}><AntDesign name="pluscircleo" size={25} color="#fcb900" onPress={() => navigation.navigate('Achievement')}/></TouchableOpacity>
-          </View>
-        </View>
       </ScrollView>
 
 

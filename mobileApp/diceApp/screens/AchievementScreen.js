@@ -311,6 +311,7 @@ const styles = StyleSheet.create({
     viewGameImages: {
       marginTop: 20,
       alignItems: 'center',
+      height: 250,
       
       images:{
         marginTop: 20,
