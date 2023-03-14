@@ -111,9 +111,9 @@ export default function GameScreen({navigation}) {
 
                 </Modal>
 
-                <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'row', flexWrap: 'wrap', top: '25%'}}>
                     {gameTitleArray[0].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G1.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>3-5</Text>
@@ -130,7 +130,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[1].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G2.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-4</Text>
@@ -145,10 +145,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '5%',}}>
                     {gameTitleArray[2].toLowerCase().includes(searchBar.toLowerCase()) && 
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G3.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{ flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-7</Text>
@@ -164,7 +162,7 @@ export default function GameScreen({navigation}) {
                         </View>
                         }
                     {gameTitleArray[3].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G4.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-7</Text>
@@ -180,10 +178,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                         }   
-                </View>
-                <View style={{flexDirection: 'row', top: '10%'}}>
                     {gameTitleArray[4].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G5.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-4</Text>
@@ -199,7 +195,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[5].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G6.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>1-4</Text>
@@ -215,10 +211,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '15%'}}>
                     {gameTitleArray[6].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G7.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>5-10</Text>
@@ -234,7 +228,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[7].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G8.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-4</Text>
@@ -248,10 +242,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '20%'}}>
                     {gameTitleArray[8].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G9.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>1-4</Text>
@@ -267,7 +259,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }  
                     {gameTitleArray[9].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G10.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>4-20</Text>
@@ -281,10 +273,9 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '25%'}}>
+
                     {gameTitleArray[10].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G11.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-5</Text>
@@ -299,7 +290,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[11].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G12.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>4-12</Text>
@@ -313,10 +304,9 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '30%'}}>
+
                     {gameTitleArray[12].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G13.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>3-4</Text>
@@ -331,7 +321,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[13].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G14.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-4</Text>
@@ -345,10 +335,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '35%'}}>
                     {gameTitleArray[14].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G15.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>1-4</Text>
@@ -363,7 +351,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[15].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G16.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-6</Text>
@@ -377,10 +365,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '40%'}}>
                     {gameTitleArray[16].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G17.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-8</Text>
@@ -396,7 +382,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[17].toLowerCase().includes(searchBar.toLowerCase()) &&  
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G18.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>1-4</Text>
@@ -410,10 +396,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '45%'}}>
                     {gameTitleArray[18].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G19.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-12</Text>
@@ -429,7 +413,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[19].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G20.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-6</Text>
@@ -443,10 +427,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '50%'}}>
                     {gameTitleArray[20].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G21.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>4-12</Text>
@@ -461,7 +443,7 @@ export default function GameScreen({navigation}) {
                         </View>
                     }
                     {gameTitleArray[21].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G22.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-6</Text>
@@ -475,10 +457,8 @@ export default function GameScreen({navigation}) {
                             <TouchableOpacity style={styles.playButton}><Text style={{color: 'white'}}>Play</Text></TouchableOpacity>
                         </View>
                     }
-                </View>
-                <View style={{flexDirection: 'row', top: '55%'}}>
                     {gameTitleArray[22].toLowerCase().includes(searchBar.toLowerCase()) &&
-                        <View style={styles.gameElement}>
+                        <View style={[styles.gameElement, {marginBottom: 25}]}>
                             <Image source={require('./img/G23.png')} style={{width: '65%', height: '25%', left: '15%', top: '5%'}}/>
                             <View style={{flexDirection:'row', justifyContent: 'space-evenly', top: '25%'}}>
                                 <Text>2-6</Text>
@@ -542,7 +522,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     middlePage: {
-        height: 8200,
+        height: 8350,
         width: '100%',
     },
     image: {
